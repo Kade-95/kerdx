@@ -1,0 +1,166 @@
+.perceptor-table-container {
+  width: var(--match-parent);
+  padding: 0em 1em;
+  height: var(--fill-parent);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+}
+
+.perceptor-table-titleandsearch {
+  margin-bottom: 1em;
+  display: grid;
+  grid-gap: 1em;
+  padding: .5em;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  background-color: var(--primary-color);
+}
+
+.perceptor-table-title {
+  font-weight: 1000;
+  font-size: 1.5em;
+  text-transform: capitalize;
+}
+
+.perceptor-table-search {
+  justify-self: flex-end;
+  border-radius: 10px;
+  border: 1px solid var(--secondary-color);
+  outline: none;
+  padding: 1em;
+  width: var(--match-parent);
+}
+
+.perceptor-table-filter {
+  justify-self: flex-end;
+  border-radius: 10px;
+  border: 1px solid var(--secondary-color);
+  outline: none;
+  padding: 1em;
+  width: var(--match-parent);
+}
+
+.perceptor-table {
+  text-align: center;
+  font-size: 1em;
+  font-weight: 300;
+  width: var(--match-parent);
+  grid-template-rows: 1fr;
+  overflow: auto;
+  display: grid;
+  border: 1px solid var(--secondary-color);
+}
+
+.perceptor-table .perceptor-table-column{
+  height: var(--fill-parent);
+}
+
+.perceptor-table .perceptor-table-column-title {
+  position: sticky;
+  top: 0;
+  text-transform: uppercase;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  width: var(--match-parent);
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: .5em;
+  justify-content: center;
+  align-items: center;
+  padding: .5em;
+  z-index: 1;
+}
+
+.perceptor-table .perceptor-table-column-title-text{
+  color: inherit;
+  background-color: transparent;
+  font-size: inherit;
+}
+
+.perceptor-table .perceptor-table-column-title-sort{
+  color: inherit;
+  background-color: transparent;
+  font-size: inherit;
+  cursor: pointer;
+  display: none;
+}
+
+.perceptor-table .perceptor-table-column-contents{
+  display: grid;
+  gap: .2em;
+  width: var(--match-parent);
+}
+
+.perceptor-table .perceptor-table-column-cell{
+  min-width: max-content;
+  width: var(--match-parent);
+  padding: .5em;
+  min-height: 20px;
+}
+
+.perceptor-table .perceptor-table-column-cell:nth-child(odd) {
+  background-color: var(--primary-color);
+}
+
+.perceptor-table .perceptor-table-column-cell:nth-child(even) {
+  background-color: var(--lighter-secondary-color);
+}
+
+.perceptor-table input {
+  width: inherit;
+  height: inherit;
+  text-transform: inherit;
+  font-size: inherit;
+}
+
+.perceptor-table img {
+  width: 20px;
+  height: auto;
+}
+
+.perceptor-table a:visited {
+  color: var(--accient-color);
+}
+
+.perceptor-table-cell a {
+  display: block;
+  width: var(--fill-parent);
+  height: var(--fill-parent);
+  text-decoration: none;
+  color: var(--accient-color);
+  font-size: 1em;
+}
+
+.perceptor-table-cell a:hover {
+  background-color: var(--light-primary-color);
+  color: var(--light-secondary-color);
+  transition-duration: .4s;
+}
+
+.perceptor-table .perceptor-table-column-cell.perceptor-table-selected-row {
+  color: var(--accient-color);
+}
+
+.perceptor-table-options {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--accient-color);
+  color: var(--secondary-color);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.perceptor-table-options .perceptor-table-option {
+  padding: .5em;
+  color: inherit;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+}
+
+.perceptor-table-option:hover {
+  color: var(--primary-color);
+}

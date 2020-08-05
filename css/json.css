@@ -1,0 +1,63 @@
+.perceptor-data-window {
+    color: inherit;
+    display: grid;
+    grid-template-columns: max-content max-content 1fr;
+    gap: 1em;
+}
+
+.perceptor-data-line {
+    color: inherit;
+    display: grid;
+}
+
+.perceptor-data-toggles {
+    color: inherit;
+    display: grid;
+    position: relative;
+}
+
+.perceptor-data-line-number {
+    color: inherit;
+    /* display: flex; */
+}
+
+.perceptor-data-toggles .perceptor-data-toggles-button {
+    color: inherit;
+    display: flex;
+    align-items: center;
+    font-size: .8em;
+    cursor: pointer;
+    position: absolute;
+}
+
+.perceptor-data-code {
+    color: inherit;
+    position: relative;
+}
+
+.perceptor-data-pun {
+    color: inherit;
+}
+
+.perceptor-data-lit {
+    color: inherit;
+}
+
+.perceptor-data-block {
+    color: inherit;
+}
+
+.perceptor-data-str {
+    color: inherit;
+}
+
+.perceptor-data-pln {
+    display: block;
+    width: 100%;
+}
+
+.perceptor-data-item {
+    margin-left: 20px;
+    display: block;
+    color: inherit;
+}
