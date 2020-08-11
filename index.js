@@ -58,12 +58,12 @@ class Kerdx extends Components {
         this.icons = Icons;
         this.currentPage = location.href;
         this.styles = [
-            'css/table.css',
-            'css/cell.css',
-            'css/form.css',
-            'css/picker.css',
-            'css/select.css',
-            'css/json.css'
+            '../Kerdx/css/table.css',
+            '../Kerdx/css/cell.css',
+            '../Kerdx/css/form.css',
+            '../Kerdx/css/picker.css',
+            '../Kerdx/css/select.css',
+            '../Kerdx/css/json.css'
         ];
 
         for (let style of this.styles) {

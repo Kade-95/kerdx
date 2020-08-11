@@ -1,27 +1,27 @@
-.perceptor-data-window {
+.kerdx-data-window {
     color: inherit;
     display: grid;
     grid-template-columns: max-content max-content 1fr;
     gap: 1em;
 }
 
-.perceptor-data-line {
+.kerdx-data-line {
     color: inherit;
     display: grid;
 }
 
-.perceptor-data-toggles {
+.kerdx-data-toggles {
     color: inherit;
     display: grid;
     position: relative;
 }
 
-.perceptor-data-line-number {
+.kerdx-data-line-number {
     color: inherit;
     /* display: flex; */
 }
 
-.perceptor-data-toggles .perceptor-data-toggles-button {
+.kerdx-data-toggles .kerdx-data-toggles-button {
     color: inherit;
     display: flex;
     align-items: center;
@@ -30,33 +30,33 @@
     position: absolute;
 }
 
-.perceptor-data-code {
+.kerdx-data-code {
     color: inherit;
     position: relative;
 }
 
-.perceptor-data-pun {
+.kerdx-data-pun {
     color: inherit;
 }
 
-.perceptor-data-lit {
+.kerdx-data-lit {
     color: inherit;
 }
 
-.perceptor-data-block {
+.kerdx-data-block {
     color: inherit;
 }
 
-.perceptor-data-str {
+.kerdx-data-str {
     color: inherit;
 }
 
-.perceptor-data-pln {
+.kerdx-data-pln {
     display: block;
     width: 100%;
 }
 
-.perceptor-data-item {
+.kerdx-data-item {
     margin-left: 20px;
     display: block;
     color: inherit;

@@ -172,7 +172,7 @@ export class Components extends Template {
                 { element: 'div', attributes: params.attributes }
             );//create the table 
 
-        table.classList.add('perceptor-table');//add table to the class
+        table.classList.add('kerdx-table');//add table to the class
 
         for (let content of params.contents) {//loop through the json array
             i = params.contents.indexOf(content);//get the position of the row
@@ -180,18 +180,18 @@ export class Components extends Template {
                 if (headers.indexOf(name) == -1) {//add to headers
                     headers.push(name);
                     columns[name] = table.makeElement({
-                        element: 'column', attributes: { class: 'perceptor-table-column', 'data-name': name }, children: [
+                        element: 'column', attributes: { class: 'kerdx-table-column', 'data-name': name }, children: [
                             {
-                                element: 'span', attributes: { class: 'perceptor-table-column-title', 'data-name': name }, children: [
-                                    { element: 'p', attributes: { class: 'perceptor-table-column-title-text' }, text: name }
+                                element: 'span', attributes: { class: 'kerdx-table-column-title', 'data-name': name }, children: [
+                                    { element: 'p', attributes: { class: 'kerdx-table-column-title-text' }, text: name }
                                 ]
                             },
-                            { element: 'div', attributes: { class: 'perceptor-table-column-contents' } }
+                            { element: 'div', attributes: { class: 'kerdx-table-column-contents' } }
                         ]
                     });
 
                     if (this.isset(params.sort)) {//make sortable if needed
-                        columns[name].find('.perceptor-table-column-title').makeElement({ element: 'i', attributes: { class: 'perceptor-table-column-title-sort', 'data-icon': 'fas, fa-arrow-down' } });
+                        columns[name].find('.kerdx-table-column-title').makeElement({ element: 'i', attributes: { class: 'kerdx-table-column-title-sort', 'data-icon': 'fas, fa-arrow-down' } });
                     }
                 }
             }
@@ -205,7 +205,7 @@ export class Components extends Template {
         for (let name of headers) {//loop through the headers and add the contents 
             for (let content of params.contents) {
                 i = params.contents.indexOf(content);
-                columns[name].find('.perceptor-table-column-contents').makeElement({ element: 'span', attributes: { class: 'perceptor-table-column-cell', 'data-name': name, 'data-value': content[name] || '', 'data-row': i }, text: content[name] || '' });
+                columns[name].find('.kerdx-table-column-contents').makeElement({ element: 'span', attributes: { class: 'kerdx-table-column-cell', 'data-name': name, 'data-value': content[name] || '', 'data-row': i }, text: content[name] || '' });
             }
 
             if (params.projection[name] == -1 || (hide && !this.isset(params.projection[name]))) {
@@ -219,9 +219,9 @@ export class Components extends Template {
         table.css({ gridTemplateColumns: `repeat(${columnCount}, 1fr)` });
 
         let tableContainer = this.createElement({//create table container and title
-            element: 'div', attributes: { class: 'perceptor-table-container' }, children: [
+            element: 'div', attributes: { class: 'kerdx-table-container' }, children: [
                 {
-                    element: 'span', attributes: { class: 'perceptor-table-titleandsearch' }
+                    element: 'span', attributes: { class: 'kerdx-table-titleandsearch' }
                 },
                 table
             ]
@@ -230,7 +230,7 @@ export class Components extends Template {
         let titleCount = 0;
 
         if (this.isset(params.title)) {// create the title text if needed
-            tableContainer.find('.perceptor-table-titleandsearch').makeElement({ element: 'h5', attributes: { class: 'perceptor-table-title' }, text: params.title });
+            tableContainer.find('.kerdx-table-titleandsearch').makeElement({ element: 'h5', attributes: { class: 'kerdx-table-title' }, text: params.title });
             titleCount++;
         }
 
@@ -239,12 +239,12 @@ export class Components extends Template {
         }
 
         if (this.isset(params.search)) {// create the search area
-            tableContainer.find('.perceptor-table-titleandsearch').makeElement({ element: 'input', attributes: { class: 'perceptor-table-search', placeHolder: 'Search table...' } });
+            tableContainer.find('.kerdx-table-titleandsearch').makeElement({ element: 'input', attributes: { class: 'kerdx-table-search', placeHolder: 'Search table...' } });
             titleCount++;
         }
 
         if (this.isset(params.filter)) {//create the filter area
-            tableContainer.find('.perceptor-table-titleandsearch').makeElement({ element: 'select', attributes: { class: 'perceptor-table-filter' }, options: params.filter });
+            tableContainer.find('.kerdx-table-titleandsearch').makeElement({ element: 'select', attributes: { class: 'kerdx-table-filter' }, options: params.filter });
             titleCount++;
         }
 
@@ -255,7 +255,7 @@ export class Components extends Template {
         tableContainer.makeElement({// arrange the table title
             element: 'style', text: `
             @media(min-width: 700px) {
-                .perceptor-table-titleandsearch {
+                .kerdx-table-titleandsearch {
                   grid-template-columns: repeat(${titleCount}, 1fr);
                 }
               }
@@ -266,7 +266,7 @@ export class Components extends Template {
 
     getTableData(table) {
         let data = [];
-        let cells = table.findAll('.perceptor-table-column-cell');
+        let cells = table.findAll('.kerdx-table-column-cell');
 
         for (let i = 0; i < cells.length; i++) {
             let { name, value, row } = cells[i].dataset;
@@ -302,10 +302,10 @@ export class Components extends Template {
     listenTable(params, callbacks) {
         params.options = params.options || [];
         callbacks = callbacks || [];
-        let table = params.table.find('.perceptor-table');
+        let table = params.table.find('.kerdx-table');
 
         let options = this.createElement({
-            element: 'span', attributes: { class: 'perceptor-table-options' }
+            element: 'span', attributes: { class: 'kerdx-table-options' }
         });
 
         let list = {
@@ -319,12 +319,12 @@ export class Components extends Template {
         for (let option of params.options) {
             optionClass = list[option] || `fas fa-${option}`;
             let anOption = options.makeElement({
-                element: 'i', attributes: { class: optionClass + ' perceptor-table-option', id: 'perceptor-table-option-' + option }
+                element: 'i', attributes: { class: optionClass + ' kerdx-table-option', id: 'kerdx-table-option-' + option }
             });
         }
 
-        let tableTitles = table.findAll('.perceptor-table-column-title');
-        let tableColumns = table.findAll('.perceptor-table-column');
+        let tableTitles = table.findAll('.kerdx-table-column-title');
+        let tableColumns = table.findAll('.kerdx-table-column');
         let rows = [];
         let firstColumn = tableColumns[0];
         let firstVisibleColumn;
@@ -340,8 +340,8 @@ export class Components extends Template {
             }
         }
 
-        let firstCells = firstColumn.findAll('.perceptor-table-column-cell');
-        let firstVisibleCells = firstVisibleColumn.findAll('.perceptor-table-column-cell');
+        let firstCells = firstColumn.findAll('.kerdx-table-column-cell');
+        let firstVisibleCells = firstVisibleColumn.findAll('.kerdx-table-column-cell');
 
         let tableRow;
 
@@ -349,53 +349,53 @@ export class Components extends Template {
             rows.push(firstCells[i].dataset.row);
         }
 
-        if (params.table.find('.perceptor-table').dataset.sort == 'true') {
+        if (params.table.find('.kerdx-table').dataset.sort == 'true') {
             for (let i = 0; i < tableTitles.length; i++) {
                 tableTitles[i].addEventListener('mouseenter', event => {
-                    tableTitles[i].find('.perceptor-table-column-title-sort').css({ display: 'unset' });
+                    tableTitles[i].find('.kerdx-table-column-title-sort').css({ display: 'unset' });
                 });
 
                 tableTitles[i].addEventListener('mouseleave', event => {
-                    tableTitles[i].find('.perceptor-table-column-title-sort').css({ display: 'none' });
+                    tableTitles[i].find('.kerdx-table-column-title-sort').css({ display: 'none' });
                 });
 
-                tableTitles[i].find('.perceptor-table-column-title-sort').addEventListener('click', event => {
+                tableTitles[i].find('.kerdx-table-column-title-sort').addEventListener('click', event => {
                     let direction;
-                    tableTitles[i].find('.perceptor-table-column-title-sort').toggleClasses('fas, fa-arrow-up');
-                    tableTitles[i].find('.perceptor-table-column-title-sort').toggleClasses('fas, fa-arrow-down');
-                    if (tableTitles[i].find('.perceptor-table-column-title-sort').dataset.direction == 'up') {
-                        tableTitles[i].find('.perceptor-table-column-title-sort').dataset.direction = 'down';
+                    tableTitles[i].find('.kerdx-table-column-title-sort').toggleClasses('fas, fa-arrow-up');
+                    tableTitles[i].find('.kerdx-table-column-title-sort').toggleClasses('fas, fa-arrow-down');
+                    if (tableTitles[i].find('.kerdx-table-column-title-sort').dataset.direction == 'up') {
+                        tableTitles[i].find('.kerdx-table-column-title-sort').dataset.direction = 'down';
                         direction = 1;
                     }
                     else {
-                        tableTitles[i].find('.perceptor-table-column-title-sort').dataset.direction = 'up';
+                        tableTitles[i].find('.kerdx-table-column-title-sort').dataset.direction = 'up';
                         direction = -1;
                     }
 
-                    let text = tableTitles[i].find('.perceptor-table-column-title-text').textContent;
+                    let text = tableTitles[i].find('.kerdx-table-column-title-text').textContent;
 
-                    let data = this.sortTable(params.table.find('.perceptor-table'), text, direction);
+                    let data = this.sortTable(params.table.find('.kerdx-table'), text, direction);
                     let newTable = this.createTable({ contents: data });
 
-                    let newTableColumns = newTable.findAll('.perceptor-table-column');
+                    let newTableColumns = newTable.findAll('.kerdx-table-column');
                     for (let j = 0; j < newTableColumns.length; j++) {
-                        tableColumns[j].find('.perceptor-table-column-contents').innerHTML = newTableColumns[j].find('.perceptor-table-column-contents').innerHTML;
+                        tableColumns[j].find('.kerdx-table-column-contents').innerHTML = newTableColumns[j].find('.kerdx-table-column-contents').innerHTML;
                     }
 
-                    tableColumns = table.findAll('.perceptor-table-column');
+                    tableColumns = table.findAll('.kerdx-table-column');
                     filter();
                 });
             }
         }
 
-        if (!this.isnull(params.table.find('.perceptor-table-search'))) {
-            params.table.find('.perceptor-table-search').onChanged(value => {
+        if (!this.isnull(params.table.find('.kerdx-table-search'))) {
+            params.table.find('.kerdx-table-search').onChanged(value => {
                 filter();
             });
         }
 
-        if (!this.isnull(params.table.find('.perceptor-table-filter'))) {
-            params.table.find('.perceptor-table-filter').onChanged(value => {
+        if (!this.isnull(params.table.find('.kerdx-table-filter'))) {
+            params.table.find('.kerdx-table-filter').onChanged(value => {
                 filter();
             });
         }
@@ -403,17 +403,17 @@ export class Components extends Template {
         let searchValue, filterValue;
 
         let filter = () => {
-            if (!this.isnull(params.table.find('.perceptor-table-search'))) {
-                searchValue = params.table.find('.perceptor-table-search').value;
+            if (!this.isnull(params.table.find('.kerdx-table-search'))) {
+                searchValue = params.table.find('.kerdx-table-search').value;
             }
 
-            if (!this.isnull(params.table.find('.perceptor-table-filter'))) {
-                filterValue = params.table.find('.perceptor-table-filter').value;
+            if (!this.isnull(params.table.find('.kerdx-table-filter'))) {
+                filterValue = params.table.find('.kerdx-table-filter').value;
             }
 
             for (let i = 0; i < rows.length; i++) {
                 let hide = false;
-                tableRow = table.findAll(`.perceptor-table-column-cell[data-row="${i}"]`);
+                tableRow = table.findAll(`.kerdx-table-column-cell[data-row="${i}"]`);
 
                 for (let j = 0; j < tableRow.length; j++) {
                     tableRow[j].cssRemove(['display']);
@@ -444,14 +444,14 @@ export class Components extends Template {
         if (this.isset(callbacks.click)) {
             table.addMultipleEventListener('mousedown, touchstart', event => {
                 let target = event.target;
-                if (target.classList.contains('perceptor-table-option')) {
+                if (target.classList.contains('kerdx-table-option')) {
                     if (this.isset(callbacks.click)) {
                         callbacks.click(event);
                     }
                 }
-                else if (target.classList.contains('perceptor-table-column-cell') || !this.isnull(target.getParents('.perceptor-table-column-cell'))) {
-                    if (!target.classList.contains('perceptor-table-column-cell')) {
-                        target = target.getParents('.perceptor-table-column-cell');
+                else if (target.classList.contains('kerdx-table-column-cell') || !this.isnull(target.getParents('.kerdx-table-column-cell'))) {
+                    if (!target.classList.contains('kerdx-table-column-cell')) {
+                        target = target.getParents('.kerdx-table-column-cell');
                     }
                     let position = target.dataset.row;
 
@@ -459,16 +459,16 @@ export class Components extends Template {
                     firstVisibleCells[position].css({ position: 'relative' });
                     firstVisibleCells[position].append(options);
 
-                    if (params.table.classList.contains('perceptor-selectable')) {
-                        let row = table.findAll(`.perceptor-table-column-cell[data-row="${position}"]`);
+                    if (params.table.classList.contains('kerdx-selectable')) {
+                        let row = table.findAll(`.kerdx-table-column-cell[data-row="${position}"]`);
                         for (let i = 0; i < row.length; i++) {
-                            row[i].classList.toggle('perceptor-table-selected-row');
+                            row[i].classList.toggle('kerdx-table-selected-row');
                         }
                         options.remove();
 
-                        if (!target.classList.contains('perceptor-table-selected-row')) {
-                            if (firstColumn.findAll('.perceptor-table-selected-row').length == 0) {
-                                params.table.classList.remove('perceptor-selectable');
+                        if (!target.classList.contains('kerdx-table-selected-row')) {
+                            if (firstColumn.findAll('.kerdx-table-selected-row').length == 0) {
+                                params.table.classList.remove('kerdx-selectable');
                             }
                         }
                     }
@@ -478,17 +478,17 @@ export class Components extends Template {
             table.pressed(event => {
                 let target = event.target;
                 if (event.duration > 300) {
-                    if (target.classList.contains('perceptor-table-column-cell') || !this.isnull(target.getParents('.perceptor-table-column-cell'))) {
-                        if (!target.classList.contains('perceptor-table-column-cell')) {
-                            target = target.getParents('.perceptor-table-column-cell');
+                    if (target.classList.contains('kerdx-table-column-cell') || !this.isnull(target.getParents('.kerdx-table-column-cell'))) {
+                        if (!target.classList.contains('kerdx-table-column-cell')) {
+                            target = target.getParents('.kerdx-table-column-cell');
                         }
                         let position = target.dataset.row;
 
-                        if (firstColumn.findAll('.perceptor-table-selected-row').length == 0 && !params.table.classList.contains('perceptor-selectable')) {
-                            params.table.classList.add('perceptor-selectable');
-                            let row = table.findAll(`.perceptor-table-column-cell[data-row="${position}"]`);
+                        if (firstColumn.findAll('.kerdx-table-selected-row').length == 0 && !params.table.classList.contains('kerdx-selectable')) {
+                            params.table.classList.add('kerdx-selectable');
+                            let row = table.findAll(`.kerdx-table-column-cell[data-row="${position}"]`);
                             for (let i = 0; i < row.length; i++) {
-                                row[i].classList.add('perceptor-table-selected-row');
+                                row[i].classList.add('kerdx-table-selected-row');
                             }
                             options.remove();
                         }
@@ -501,30 +501,30 @@ export class Components extends Template {
     createForm(params) {
         let form = this.createElement({
             element: params.element || 'form', attributes: params.attributes, children: [
-                { element: 'h3', attributes: { class: 'perceptor-form-title' }, text: params.title },
-                { element: 'section', attributes: { class: 'perceptor-form-contents', style: { gridTemplateColumns: `repeat(${params.columns}, 1fr)` } } },
-                { element: 'section', attributes: { class: 'perceptor-form-buttons' } },
+                { element: 'h3', attributes: { class: 'kerdx-form-title' }, text: params.title },
+                { element: 'section', attributes: { class: 'kerdx-form-contents', style: { gridTemplateColumns: `repeat(${params.columns}, 1fr)` } } },
+                { element: 'section', attributes: { class: 'kerdx-form-buttons' } },
             ]
         });
 
-        form.classList.add('perceptor-form');
+        form.classList.add('kerdx-form');
 
         if (this.isset(params.parent)) params.parent.append(form);
         let note;
-        let formContents = form.find('.perceptor-form-contents');
+        let formContents = form.find('.kerdx-form-contents');
 
         for (let key in params.contents) {
             note = (this.isset(params.contents[key].note)) ? `(${params.contents[key].note})` : '';
             let lableText = params.contents[key].label || this.camelCasedToText(key).toLowerCase();
             let block = formContents.makeElement({
-                element: 'div', attributes: { class: 'perceptor-form-single-content' }, children: [
-                    { element: 'label', html: lableText, attributes: { class: 'perceptor-form-label', for: key.toLowerCase() } }
+                element: 'div', attributes: { class: 'kerdx-form-single-content' }, children: [
+                    { element: 'label', html: lableText, attributes: { class: 'kerdx-form-label', for: key.toLowerCase() } }
                 ]
             });
 
             let data = block.makeElement(params.contents[key]);
-            data.classList.add('perceptor-form-data');
-            if (this.isset(params.contents[key].note)) block.makeElement({ element: 'span', text: params.contents[key].note, attributes: { class: 'perceptor-form-note' } });
+            data.classList.add('kerdx-form-data');
+            if (this.isset(params.contents[key].note)) block.makeElement({ element: 'span', text: params.contents[key].note, attributes: { class: 'kerdx-form-note' } });
 
             if (this.isset(params.required) && params.required.includes(key)) {
                 data.required = true;
@@ -532,28 +532,28 @@ export class Components extends Template {
         }
 
         for (let key in params.buttons) {
-            form.find('.perceptor-form-buttons').makeElement(params.buttons[key]);
+            form.find('.kerdx-form-buttons').makeElement(params.buttons[key]);
         }
 
-        form.makeElement({ element: 'span', attributes: { class: 'perceptor-form-error' }, state: { name: 'error', owner: `#${form.id}` } });
+        form.makeElement({ element: 'span', attributes: { class: 'kerdx-form-error' }, state: { name: 'error', owner: `#${form.id}` } });
 
         return form;
     }
 
     picker(params, callback) {
         let picker = this.createElement({
-            element: 'div', attributes: { class: 'perceptor-picker' }, children: [
-                { element: 'h3', attributes: { class: 'perceptor-picker-title' }, text: params.title || '' },
-                { element: 'div', attributes: { class: 'perceptor-picker-contents' } }
+            element: 'div', attributes: { class: 'kerdx-picker' }, children: [
+                { element: 'h3', attributes: { class: 'kerdx-picker-title' }, text: params.title || '' },
+                { element: 'div', attributes: { class: 'kerdx-picker-contents' } }
             ]
         });
 
         for (let content of params.contents) {
-            picker.find('.perceptor-picker-contents').makeElement({ element: 'span', attributes: { class: 'perceptor-picker-single', 'data-name': content }, text: content });
+            picker.find('.kerdx-picker-contents').makeElement({ element: 'span', attributes: { class: 'kerdx-picker-single', 'data-name': content }, text: content });
         }
 
         picker.addEventListener('dblclick', event => {
-            if (event.target.classList.contains('perceptor-picker-single')) {
+            if (event.target.classList.contains('kerdx-picker-single')) {
                 callback(event.target.dataset.name);
             }
         });
@@ -623,20 +623,20 @@ export class Components extends Template {
         let select = this.createElement({
             element: 'div', attributes: params.attributes, children: [
                 {
-                    element: 'span', attributes: { class: 'perceptor-select-control', }, children: [
-                        { element: 'input', attributes: { class: 'perceptor-select-input', value: params.value || '', ignore: true } },
+                    element: 'span', attributes: { class: 'kerdx-select-control', }, children: [
+                        { element: 'input', attributes: { class: 'kerdx-select-input', value: params.value || '', ignore: true } },
                         {
-                            element: 'span', attributes: { class: 'perceptor-select-toggle' }
+                            element: 'span', attributes: { class: 'kerdx-select-toggle' }
                         }
                     ]
                 },
-                { element: 'input', attributes: { class: 'perceptor-select-search', placeHolder: 'Search me...', ignore: true } },
+                { element: 'input', attributes: { class: 'kerdx-select-search', placeHolder: 'Search me...', ignore: true } },
                 {
-                    element: 'span', attributes: { class: 'perceptor-select-contents' }
+                    element: 'span', attributes: { class: 'kerdx-select-contents' }
                 }
             ]
         });
-        select.classList.add('perceptor-select');
+        select.classList.add('kerdx-select');
         let setValue = select.getAttribute('value');
         select.value = [];
         if (!this.isnull(setValue)) {
@@ -647,10 +647,10 @@ export class Components extends Template {
 
         select.dataset.active = 'false';
         //get the contents
-        let contents = select.find('.perceptor-select-contents');
-        let input = select.find('.perceptor-select-input');
-        let search = select.find('.perceptor-select-search');
-        let toggle = select.find('.perceptor-select-toggle');
+        let contents = select.find('.kerdx-select-contents');
+        let input = select.find('.kerdx-select-input');
+        let search = select.find('.kerdx-select-search');
+        let toggle = select.find('.kerdx-select-toggle');
         params.contents = params.contents || {};
         //populate the element contents
         if (Array.isArray(params.contents)) {//Turn contents to object if its array
@@ -662,7 +662,7 @@ export class Components extends Template {
         }
 
         for (let i in params.contents) {
-            let option = contents.makeElement({ element: 'span', attributes: { class: 'perceptor-select-option', value: i } });
+            let option = contents.makeElement({ element: 'span', attributes: { class: 'kerdx-select-option', value: i } });
             option.innerHTML = params.contents[i];
             option.value = i;
         }
@@ -675,7 +675,7 @@ export class Components extends Template {
         //enable multiple values
         let single = (!this.isset(params.multiple) || params.multiple == false);
 
-        let options = select.findAll('.perceptor-select-option');
+        let options = select.findAll('.kerdx-select-option');
 
         //search the contents
         search.onChanged(value => {
@@ -705,12 +705,12 @@ export class Components extends Template {
             }
 
             if (allowNavigate) {
-                active = contents.find('.perceptor-select-active-option');
+                active = contents.find('.kerdx-select-active-option');
                 if (!this.isnull(active)) {
-                    active.classList.remove('perceptor-select-active-option');
+                    active.classList.remove('kerdx-select-active-option');
                 }
 
-                options[scrollPosition].classList.add('perceptor-select-active-option');
+                options[scrollPosition].classList.add('kerdx-select-active-option');
             }
         }
 
@@ -785,7 +785,7 @@ export class Components extends Template {
                 activate();
             }
 
-            if (event.target.classList.contains('perceptor-select-option')) {
+            if (event.target.classList.contains('kerdx-select-option')) {
                 let text = params.contents[event.target.value];
                 if (params.multiple == 'single') {
                     if (input.value.includes(text)) {
@@ -1393,25 +1393,25 @@ export class Components extends Template {
     displayData(data, container) {
         let lineNumbers = [];
         let displayString = (value) => {
-            return this.createElement({ element: 'span', attributes: { class: 'perceptor-data-str' }, text: `"${value}"` });
+            return this.createElement({ element: 'span', attributes: { class: 'kerdx-data-str' }, text: `"${value}"` });
         }
 
         let displayLiteral = (value) => {
-            return this.createElement({ element: 'span', attributes: { class: 'perceptor-data-lit' }, text: `${value}` });
+            return this.createElement({ element: 'span', attributes: { class: 'kerdx-data-lit' }, text: `${value}` });
         }
 
         let displayPunctuation = (value) => {
-            return this.createElement({ element: 'span', attributes: { class: 'perceptor-data-pun' }, text: `${value}` });
+            return this.createElement({ element: 'span', attributes: { class: 'kerdx-data-pun' }, text: `${value}` });
         }
 
         let displayNewLine = () => {
             increment++;
-            return this.createElement({ element: 'span', attributes: { class: 'perceptor-data-pln' } });
+            return this.createElement({ element: 'span', attributes: { class: 'kerdx-data-pln' } });
         }
 
         let displayItem = (value, params) => {
             params = params || {};
-            let item = this.createElement({ element: 'span', attributes: { class: 'perceptor-data-item' } });
+            let item = this.createElement({ element: 'span', attributes: { class: 'kerdx-data-item' } });
             lineNumbers.push(item);
             if (this.isset(params.key)) {
                 item.makeElement([
@@ -1429,7 +1429,7 @@ export class Components extends Template {
         }
 
         let displayArray = (value) => {
-            let array = this.createElement({ element: 'span', attributes: { class: 'perceptor-data-block' } });
+            let array = this.createElement({ element: 'span', attributes: { class: 'kerdx-data-block' } });
             lineNumbers.push(array);
 
             array.makeElement(displayPunctuation('['));
@@ -1446,7 +1446,7 @@ export class Components extends Template {
         }
 
         let displayObject = (value) => {
-            let object = this.createElement({ element: 'span', attributes: { class: 'perceptor-data-block' } });
+            let object = this.createElement({ element: 'span', attributes: { class: 'kerdx-data-block' } });
             lineNumbers.push(object);
 
             object.makeElement(displayPunctuation('{'));
@@ -1479,41 +1479,41 @@ export class Components extends Template {
         }
         let lineHeight = '25px';
         let displayed = container.makeElement({
-            element: 'pre', attributes: { class: 'perceptor-data-window' }, children: [
+            element: 'pre', attributes: { class: 'kerdx-data-window' }, children: [
                 {
-                    element: 'span', attributes: { class: 'perceptor-data-line', style: { lineHeight } }
+                    element: 'span', attributes: { class: 'kerdx-data-line', style: { lineHeight } }
                 },
                 {
-                    element: 'span', attributes: { class: 'perceptor-data-toggles' }
+                    element: 'span', attributes: { class: 'kerdx-data-toggles' }
                 },
                 {
-                    element: 'code', attributes: { class: 'perceptor-data-code', style: { lineHeight } }, children: [
+                    element: 'code', attributes: { class: 'kerdx-data-code', style: { lineHeight } }, children: [
                         chooseDisplay(data)
                     ]
                 }
             ]
         });
 
-        let code = displayed.find('.perceptor-data-code'),
+        let code = displayed.find('.kerdx-data-code'),
             numbers,
             toggleButtons,
             height = code.position().height,
-            lines = displayed.find('.perceptor-data-line'),
-            toggles = displayed.find('.perceptor-data-toggles'),
+            lines = displayed.find('.kerdx-data-line'),
+            toggles = displayed.find('.kerdx-data-toggles'),
             count = height / parseInt(lineHeight),
-            items = code.findAll('.perceptor-data-item'),
-            blocks = code.findAll('.perceptor-data-block');
+            items = code.findAll('.kerdx-data-item'),
+            blocks = code.findAll('.kerdx-data-block');
 
         let setRange = (block) => {
             let start = Math.floor((block.position().top - code.position().top) / parseInt(lineHeight)) + 1;
             let end = Math.floor((block.position().bottom - code.position().top) / parseInt(lineHeight)) + 1;
-            block.range = perceptor.range(end, start);
+            block.range = kerdx.range(end, start);
         }
 
         let setNumbers = () => {
             for (let i = 0; i < lineNumbers.length; i++) {
                 lines.makeElement([
-                    { element: 'a', html: `${i / 1 + 1}`, attributes: { class: 'perceptor-data-line-number' } }
+                    { element: 'a', html: `${i / 1 + 1}`, attributes: { class: 'kerdx-data-line-number' } }
                 ]);
             }
         }
@@ -1521,7 +1521,7 @@ export class Components extends Template {
         let setToggles = () => {
             for (let i = 0; i < blocks.length; i++) {
                 let top = blocks[i].position().top - code.position().top + 6 + 'px'
-                let toggle = toggles.makeElement({ element: 'i', attributes: { class: 'perceptor-data-toggles-button fas fa-arrow-down', style: { top } } });
+                let toggle = toggles.makeElement({ element: 'i', attributes: { class: 'kerdx-data-toggles-button fas fa-arrow-down', style: { top } } });
 
                 toggle.block = blocks[i];
                 blocks[i].toggle = toggle;
@@ -1548,10 +1548,10 @@ export class Components extends Template {
         let hideBlock = (block) => {
             let blockContent = block.children;
             for (let i = 0; i < blockContent.length; i++) {
-                if (blockContent[i].classList.contains('perceptor-data-item')) {
+                if (blockContent[i].classList.contains('kerdx-data-item')) {
                     blockContent[i].css({ display: 'none' });
 
-                    blockContent[i].findAll('.perceptor-data-block').forEach(b => {
+                    blockContent[i].findAll('.kerdx-data-block').forEach(b => {
                         if (!this.isset(b.toggle.controller)) {
                             b.toggle.controller = block;
                             b.toggle.css({ display: 'none' });
@@ -1573,10 +1573,10 @@ export class Components extends Template {
         let showBlock = (block) => {
             let blockContent = block.children;
             for (let i = 0; i < blockContent.length; i++) {
-                if (blockContent[i].classList.contains('perceptor-data-item')) {
+                if (blockContent[i].classList.contains('kerdx-data-item')) {
                     blockContent[i].cssRemove(['display']);
 
-                    blockContent[i].findAll('.perceptor-data-block').forEach(b => {
+                    blockContent[i].findAll('.kerdx-data-block').forEach(b => {
                         if (b.toggle.controller == block) {
                             delete b.toggle.controller;
                             b.toggle.cssRemove(['display']);
@@ -1592,13 +1592,13 @@ export class Components extends Template {
             setNumbers();
             setToggles();
 
-            numbers = lines.findAll('.perceptor-data-line-number');
-            toggleButtons = toggles.findAll('.perceptor-data-toggles-button');
+            numbers = lines.findAll('.kerdx-data-line-number');
+            toggleButtons = toggles.findAll('.kerdx-data-toggles-button');
 
             let blockContent, start, end;
             displayed.addEventListener('click', event => {
                 let target = event.target;
-                if (target.classList.contains('perceptor-data-toggles-button')) {//if toggled
+                if (target.classList.contains('kerdx-data-toggles-button')) {//if toggled
                     if (!this.isset(target.block.range)) {
                         setRange(target.block);
                     }

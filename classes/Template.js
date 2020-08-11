@@ -42,7 +42,7 @@ export class Template extends JSElements {
                     option.setAttribute('disabled', true);
                 }
 
-                if (perceptor.isset(params.selected) && value == params.selected) {
+                if (self.isset(params.selected) && value == params.selected) {
                     option.setAttribute('selected', true);
                 }
             }

@@ -274,7 +274,7 @@ export class Func {
         }
 
         this.array.find = (haystack, callback) => {
-            for (let i = 0; i < haystack.length; i++) {
+            for (let i in haystack) {
                 if (callback(haystack[i]) == true) {
                     return haystack[i];
                 }
@@ -283,9 +283,10 @@ export class Func {
 
         this.array.findAll = (haystack, callback) => {
             let values = [];
-            for (let i = 0; i < haystack.length; i++) {
-                if (callback(haystack[i]) == true)
+            for (let i in haystack) {
+                if (callback(haystack[i]) == true) {
                     values.push(haystack[i]);
+                }
             }
 
             return values;

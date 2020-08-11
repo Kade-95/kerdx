@@ -1,4 +1,4 @@
-.perceptor-form {
+.kerdx-form {
     text-align: center;
     justify-self: center;
     align-self: center;
@@ -12,7 +12,7 @@
     border: 1px solid var(--secondary-color);
 }
 
-.perceptor-form-title {
+.kerdx-form-title {
     font-weight: 300;
     letter-spacing: .05em;
     font-size: 1.2em;
@@ -24,14 +24,14 @@
     padding: 1em;
 }
 
-.perceptor-form-contents{
+.kerdx-form-contents{
     display: grid;
     grid-gap: 1em;
     padding: 1em;
     align-items: start;
 }
 
-.perceptor-form-buttons{
+.kerdx-form-buttons{
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
@@ -39,7 +39,7 @@
     padding: 1em;
 }
 
-.perceptor-form-buttons button{
+.kerdx-form-buttons button{
     width: var(--fill-parent);
     border-radius: 20px;
     padding: 1em;
@@ -49,12 +49,12 @@
     color: var(--primary-color);
 }
 
-.perceptor-form-single-content{
+.kerdx-form-single-content{
     display: grid;
     padding: .5em;
 }
 
-.perceptor-form-label {
+.kerdx-form-label {
     color: #666666;
     text-transform: capitalize;
     text-align: justify;
@@ -62,12 +62,12 @@
     justify-content: space-between;
 }
 
-.perceptor-form-note{
+.kerdx-form-note{
     color: #999999;
     font-size: .7em;
 }
 
-.perceptor-form-data{
+.kerdx-form-data{
     border: 1px solid var(--secondary-color);
     padding: .7em .3em;
     text-align: justify;
@@ -76,33 +76,33 @@
     outline: none;
 }
 
-.perceptor-form-data:focus {
+.kerdx-form-data:focus {
     border-color: var(--secondary-color);
 }
 
-.perceptor-form-row{
+.kerdx-form-row{
     position: relative;
     display: grid;
     border: 1px solid var(--secondary-color);
     grid-gap: .5em;
 }
 
-.perceptor-form-row-contents{
+.kerdx-form-row-contents{
     display: grid;
     grid-gap: .5em;
 }
 
-.perceptor-form .cell-label{
+.kerdx-form .cell-label{
     font-size: .9em;
 }
 
-.perceptor-form .cell-data{
+.kerdx-form .cell-data{
     outline: none;
     border: none;
     min-height: 20px;
 }
 
-.perceptor-form-error{
+.kerdx-form-error{
     display: none;
     background-color: var(--accient-color);
     color: var(--secondary-color);
@@ -111,7 +111,7 @@
 }
 
 @media(min-width: 700px) {
-    .perceptor-form #remember-me {
+    .kerdx-form #remember-me {
         width: 20px;
         height: 20px;
     }

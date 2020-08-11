@@ -1,4 +1,4 @@
-.perceptor-select {
+.kerdx-select {
     display: grid;
     max-height: 250px;
     height: max-content;
@@ -7,19 +7,19 @@
     z-index: 0;
 }
 
-.perceptor-select-control {
+.kerdx-select-control {
     display: grid;
     grid-template-columns: 1fr max-content;
     align-items: centers;
 }
 
-.perceptor-select-input {
+.kerdx-select-input {
     border: none;
     background: transparent;
     color: var(--secondary-color);
 }
 
-.perceptor-select-search {
+.kerdx-select-search {
     background: var(--primary-color);
     color: var(--secondary-color);
     width: var(--match-parent);
@@ -29,7 +29,7 @@
     border: none;
 }
 
-.perceptor-select-toggle {
+.kerdx-select-toggle {
     border-left: 2px solid var(--secondary-color);
     border-top: 2px solid var(--secondary-color);
     transform: rotate(225deg);
@@ -39,7 +39,7 @@
     cursor: pointer
 }
 
-.perceptor-select-contents {
+.kerdx-select-contents {
     width: var(--fill-parent);
     position: absolute;
     display: none;
@@ -55,7 +55,7 @@
     background-color: var(--primary-color);
 }
 
-.perceptor-select-option {
+.kerdx-select-option {
     display: flex;
     place-items: center;
     width: var(--match-parent);
@@ -63,7 +63,7 @@
     cursor: pointer;
 }
 
-.perceptor-select-option:hover, .perceptor-select-active-option{
+.kerdx-select-option:hover, .kerdx-select-active-option{
     background-color: var(--secondary-color);
     color: var(--primary-color);
 }

@@ -1,17 +1,17 @@
-.perceptor-picker {
+.kerdx-picker {
     display: grid;
     height: var(--fill-parent);
     width: var(--fill-parent);
     grid-template-rows: max-content 1fr;
 }
 
-.perceptor-picker-contents {
+.kerdx-picker-contents {
     display: block;
     height: var(--fill-parent);
     width: var(--fill-parent);
 }
 
-.perceptor-picker-single {
+.kerdx-picker-single {
     padding: 2em;
     display: inline-block;
     margin: 1em;

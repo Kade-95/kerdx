@@ -157,8 +157,9 @@ export class JSElements extends Period {
         if (!this.isset(element.setKey)) element.setKey();
 
         if (this.isset(singleParam.list)) {
-            element.makeElement({ element: 'datalist', attributes: { id: element.dataset.domKey }, options: singleParam.list });
+            let list = element.makeElement({ element: 'datalist', options: singleParam.list });
             element.setAttribute('list', element.dataset.domKey);
+            list.setAttribute('id', element.dataset.domKey);
         }
 
         if (this.isset(singleParam.state)) {
