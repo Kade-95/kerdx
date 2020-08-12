@@ -58,12 +58,12 @@ class Kerdx extends Components {
         this.icons = Icons;
         this.currentPage = location.href;
         this.styles = [
-            'css/table.css',
-            'css/cell.css',
-            'css/form.css',
-            'css/picker.css',
-            'css/select.css',
-            'css/json.css'
+            'https://kade-95.github.io/kerdx/css/table.css',
+            'https://kade-95.github.io/kerdx/css/cell.css',
+            'https://kade-95.github.io/kerdx/css/form.css',
+            'https://kade-95.github.io/kerdx/css/picker.css',
+            'https://kade-95.github.io/kerdx/css/select.css',
+            'https://kade-95.github.io/kerdx/css/json.css'
         ];
 
         for (let style of this.styles) {
