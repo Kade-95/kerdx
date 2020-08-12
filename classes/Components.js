@@ -92,7 +92,7 @@ export class Components extends Template {
         if (this.isset(params.edit)) {
             edit = cell.makeElement({
                 element: 'i', attributes: {
-                    class: `${params.edit}`, 'data-icon': this.sharePoint.icons.pen, style: { cursor: 'pointer', backgroundColor: 'var(--primary-color)', width: '1em', height: 'auto', position: 'absolute', top: '0px', right: '0px', padding: '.15em' }
+                    class: `${params.edit}`, 'data-icon': 'fas, fa-pen', style: { cursor: 'pointer', backgroundColor: 'var(--primary-color)', width: '1em', height: 'auto', position: 'absolute', top: '0px', right: '0px', padding: '.15em' }
                 }
             });
             cell.css({ position: 'relative' });
