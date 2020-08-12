@@ -204,6 +204,7 @@ export class Components extends Template {
 
         for (let name of headers) {//loop through the headers and add the contents 
             for (let content of params.contents) {
+                console.log(content);
                 i = params.contents.indexOf(content);
                 columns[name].find('.kerdx-table-column-contents').makeElement({ element: 'span', attributes: { class: 'kerdx-table-column-cell', 'data-name': name, 'data-value': content[name] || '', 'data-row': i }, html: content[name] || '' });
             }
