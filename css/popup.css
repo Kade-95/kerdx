@@ -43,9 +43,8 @@
 }
 
 .kerdx-pop-up-content {
-    display: grid;
+    display: block;
     overflow: auto;
     height: 100%;
     width: 100%;
-    justify-items: flex-start
 }
