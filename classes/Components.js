@@ -190,7 +190,7 @@ export class Components extends Template {
                     });
 
                     if (this.isset(params.sort)) {//make sortable if needed
-                        columns[name].find('.kerdx-table-column-title').makeElement({ element: 'i', attributes: { class: 'kerdx-table-column-title-sort', 'data-icon': 'fas, fa-arrow-down'} });
+                        columns[name].find('.kerdx-table-column-title').makeElement({ element: 'i', attributes: { class: 'kerdx-table-column-title-sort', 'data-icon': 'fas, fa-arrow-down' } });
                     }
                 }
             }
@@ -570,18 +570,18 @@ export class Components extends Template {
         params.attributes.style.height = params.attributes.style.height || '50vh';
 
         let popUp = this.createElement({
-            element: 'div', attributes: { class: 'pop-up', style: { position: 'fixed', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'grid', width: 'var(--fill-parent)', height: 'var(--fill-parent)', justifyItems: 'center', alignItems: 'center', zIndex: 1000 } }, children: [
+            element: 'div', attributes: { class: 'kerdx-pop-up' }, children: [
                 {
-                    element: 'div', attributes: { id: 'pop-up-window', style: { backgroundColor: 'var(--primary-color)', display: 'grid', gridGap: '1em', justifyItems: 'center', alignItems: 'start', width: params.width, height: params.height, gridTemplateColumns: '1fr', gridTemplateRows: 'max-content 1fr', overflow: 'hidden' } }, children: [
+                    element: 'div', attributes: { id: 'pop-up-window', class: 'kerdx-pop-up-window' }, children: [
                         {
-                            element: 'div', attributes: { id: 'pop-up-menu', style: { backgroundColor: 'var(--secondary-color)', color: 'var(--primary-color)', display: 'grid', gridGap: '.5em', gridTemplateColumns: '1fr repeat(2, min-content)', width: '100%', justifyItems: 'flex-end', alignItems: 'center' } }, children: [
+                            element: 'div', attributes: { id: 'pop-up-menu', class: 'kerdx-pop-up-menu' }, children: [
                                 { element: 'p', attributes: { id: '', style: { color: 'inherit', padding: '1em' } }, text: title },
-                                { element: 'i', attributes: { id: 'toggle-window', class: 'fas fa-expand-alt', style: { color: 'var(--primary-color)', height: '20px', width: '20px', padding: '1em' } } },
-                                { element: 'i', attributes: { id: 'close-window', class: 'fas fa-times', style: { color: 'var(--primary-color)', height: '20px', width: '20px', padding: '1em' } } }
+                                { element: 'i', attributes: { id: 'toggle-window', class: 'kerdx-pop-up-control fas fa-expand-alt' } },
+                                { element: 'i', attributes: { id: 'close-window', class: 'kerdx-pop-up-control fas fa-times' } }
                             ]
                         },
                         {
-                            element: 'div', attributes: { id: 'pop-up-content', style: { display: 'grid', overflow: 'auto', height: '100%', width: '100%', justifyItems: 'flex-start' } }, children: [
+                            element: 'div', attributes: { id: 'pop-up-content', class: 'kerdx-pop-up-content' }, children: [
                                 content
                             ]
                         }
