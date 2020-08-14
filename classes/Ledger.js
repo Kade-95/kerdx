@@ -1,5 +1,8 @@
 import { Func } from './Func.js';
+import { ObjectLibrary } from './../functions/Objects.js';
+
 let func = new Func();
+let objectLibrary = ObjectLibrary();
 
 class Ledger {
     constructor(element, props, childProps) {
@@ -190,7 +193,7 @@ class Ledger {
 
         while (func.isset(find)) {
             key = func.generateRandom(200);
-            find = func.object.find(this.children, (child) => {
+            find = objectLibrary.find(this.children, (child) => {
                 return child.privateKey == key;
             });
         }

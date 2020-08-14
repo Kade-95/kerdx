@@ -1,7 +1,9 @@
 import { Matrix } from './Matrix.js';
 import { Func } from './Func.js';
+import { ArrayLibrary } from './../functions/Array.js';
 
 let func = new Func();
+let arrayLibrary = ArrayLibrary();
 
 export class NeuralNetwork {
     constructor(params) {
@@ -76,11 +78,11 @@ export class NeuralNetwork {
             targetArray.push(data.targets);
         }
 
-        let inputs = func.array.each(inputArray, value => {
+        let inputs = arrayLibrary.each(inputArray, value => {
             return this.prepareInputs(value);
         });
 
-        let targets = func.array.each(targetArray, value => {
+        let targets = arrayLibrary.each(targetArray, value => {
             return this.prepareTargets(value);
         });
 
