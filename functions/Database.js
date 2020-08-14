@@ -7,7 +7,7 @@ function Database(name, version) {
     self.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
     self.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
-    self.init = function () {//initialize db by setting the current version
+    self.init = function (callback) {//initialize db by setting the current version
         const request = self.indexedDB.open(self.name);
         request.onupgradeneeded = (event) => {
             if (callback != undefined) {
@@ -187,7 +187,7 @@ function Database(name, version) {
     }
 
     self.checkId = function (request, query, callback) {
-        id = query._id || self.generateId();//get new _id if not set
+        let id = query._id || self.generateId();//get new _id if not set
         let get = request.get(id);//check if existing
         get.onsuccess = event => {
             if (event.target.result != undefined) {
@@ -211,7 +211,12 @@ function Database(name, version) {
             };
 
             transaction.oncomplete = (event) => {
-                resolve(event.target.error == null);
+                if(params.getInserted == true){
+                    resolve(params.query);
+                }
+                else{
+                    resolve(event.target.error == null);
+                }
             }
 
             let request = transaction.objectStore(params.collection);
@@ -374,3 +379,8 @@ function Database(name, version) {
 }
 
 export { Database };
+
+let db = Database('notes');
+db.insert({collection: 'personal', query: {name: 'ken'}, getInserted: true}).then(res=>{
+    console.log(res)
+});
