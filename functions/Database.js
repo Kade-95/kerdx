@@ -385,7 +385,7 @@ function Database(name, version) {
 
 export { Database };
 
-let db = Database('notes');
-db.find({ collection: 'personal', query: { name: 'kend' }, getInserted: true }).then(res => {
-    console.log(res)
-});
+// let db = Database('notes');
+// db.find({ collection: 'personal', query: { name: 'kend' }, getInserted: true }).then(res => {
+//     console.log(res)
+// });
