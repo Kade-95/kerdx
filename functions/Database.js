@@ -166,7 +166,12 @@ function Database(name, version) {
                     };
                 }
                 else {
-                    resolve(documents);
+                    if (params.many == true) {//many 
+                        resolve(documents);
+                    }
+                    else {
+                        resolve(documents[0]);//single
+                    }
                 }
             }).catch(error => {
                 reject(error);
@@ -211,10 +216,10 @@ function Database(name, version) {
             };
 
             transaction.oncomplete = (event) => {
-                if(params.getInserted == true){
+                if (params.getInserted == true) {
                     resolve(params.query);
                 }
-                else{
+                else {
                     resolve(event.target.error == null);
                 }
             }
@@ -379,3 +384,8 @@ function Database(name, version) {
 }
 
 export { Database };
+
+let db = Database('notes');
+db.find({ collection: 'personal', query: { name: 'kend' }, getInserted: true }).then(res => {
+    console.log(res)
+});
