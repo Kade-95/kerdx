@@ -101,7 +101,7 @@ function Database(name, version) {
                         }
 
                         transaction.oncomplete = event => {
-                            resolve({ removedCount, ok: removedCount == foundCount });
+                            resolve({action: 'emptycollection', removedCount, ok: removedCount == foundCount });
                         }
                         foundCount = found.length;
                         for (let data of found) {
@@ -220,12 +220,7 @@ function Database(name, version) {
             };
 
             transaction.oncomplete = (event) => {
-                if (params.getInserted == true) {
-                    resolve(params.query);
-                }
-                else {
-                    resolve(event.target.error == null);
-                }
+                resolve({ action: 'insert', documents: params.query });
             }
 
             let request = transaction.objectStore(params.collection);
@@ -283,7 +278,7 @@ function Database(name, version) {
                 }
 
                 transaction.oncomplete = event => {
-                    resolve(documents);
+                    resolve({ action: 'update', documents });
                 }
 
                 let store = transaction.objectStore(params.collection);
@@ -353,7 +348,7 @@ function Database(name, version) {
                     }
 
                     transaction.oncomplete = event => {
-                        resolve({ removedCount, ok: removedCount == foundCount });
+                        resolve({ action: 'delete', removedCount, ok: removedCount == foundCount });
                     }
 
                     if (Array.isArray(found)) {//if many
@@ -395,6 +390,6 @@ function Database(name, version) {
 export { Database };
 
 let db = Database('notes');
-db.save({ collection: 'personal', query: { name: 'kesdsand' }, check: { name: 'kesdsand' }, getInserted: true }).then(res => {
+db.save({ collection: 'personal', query: { name: 'kesdsanssd' }, check: { name: 'kesdsanssd' } }).then(res => {
     console.log(res)
 });
