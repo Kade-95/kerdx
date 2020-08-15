@@ -96,6 +96,13 @@ function Database(name, version) {
                         let transaction = db.transaction(collection, 'readwrite');
                         let store = transaction.objectStore(collection);
 
+                        transaction.onerror = event => {
+                            reject(event.target.error);
+                        }
+
+                        transaction.oncomplete = event => {
+                            resolve({ removedCount, ok: removedCount == foundCount });
+                        }
                         foundCount = found.length;
                         for (let data of found) {
                             let request = store.delete(data._id);//delete each document
@@ -106,10 +113,6 @@ function Database(name, version) {
                             request.onsuccess = event => {
                                 removedCount++;
                             }
-                        }
-
-                        transaction.oncomplete = event => {
-                            resolve({ removedCount, ok: removedCount == foundCount });
                         }
                     }
                     else {
@@ -136,6 +139,15 @@ function Database(name, version) {
                         reject(event.target.error);
                     }
 
+                    transaction.oncomplete = event => {
+                        if (params.many == true) {//many 
+                            resolve(documents);
+                        }
+                        else {
+                            resolve(documents[0]);//single
+                        }
+                    }
+
                     let store = transaction.objectStore(params.collection);
                     let request = store.openCursor();
                     let cursor;
@@ -154,14 +166,6 @@ function Database(name, version) {
                                 documents.push(cursor.value);
                             }
                             cursor.continue();
-                        }
-                        else {
-                            if (params.many == true) {//many 
-                                resolve(documents);
-                            }
-                            else {
-                                resolve(documents[0]);//single
-                            }
                         }
                     };
                 }
@@ -240,7 +244,6 @@ function Database(name, version) {
                     request.add(params.query);//add
                 });
             }
-
         });
     }
 
@@ -279,6 +282,10 @@ function Database(name, version) {
                     reject(event.target.error);
                 }
 
+                transaction.oncomplete = event => {
+                    resolve(documents);
+                }
+
                 let store = transaction.objectStore(params.collection);
                 let request = store.openCursor();
                 let documents = {};
@@ -309,12 +316,10 @@ function Database(name, version) {
                                 reject(error);
                             }
                         }
+
                         if (params.many == true) {
                             cursor.continue();
                         }
-                    }
-                    else {
-                        resolve(documents);
                     }
                 };
             }).catch(error => {
@@ -343,6 +348,14 @@ function Database(name, version) {
                     let transaction = db.transaction(params.collection, 'readwrite');
                     let store = transaction.objectStore(params.collection);
 
+                    transaction.onerror = event => {
+                        reject(event.target.error);
+                    }
+
+                    transaction.oncomplete = event => {
+                        resolve({ removedCount, ok: removedCount == foundCount });
+                    }
+
                     if (Array.isArray(found)) {//if many
                         foundCount = found.length;
                         for (let data of found) {
@@ -367,10 +380,6 @@ function Database(name, version) {
                             removedCount++;
                         }
                     }
-
-                    transaction.oncomplete = event => {
-                        resolve({ removedCount, ok: removedCount == foundCount });
-                    }
                 }).catch(error => {
                     reject(error);
                 });
@@ -385,7 +394,7 @@ function Database(name, version) {
 
 export { Database };
 
-// let db = Database('notes');
-// db.find({ collection: 'personal', query: { name: 'kend' }, getInserted: true }).then(res => {
-//     console.log(res)
-// });
+let db = Database('notes');
+db.save({ collection: 'personal', query: { name: 'kesdsand' }, check: { name: 'kesdsand' }, getInserted: true }).then(res => {
+    console.log(res)
+});
