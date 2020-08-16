@@ -293,7 +293,7 @@ function Database(name, version) {
                     let cursor = event.target.result;
                     if (cursor) {
                         if (self.objectLibrary.checkMatch(cursor.value, params.check)) {//retrieve the matched documents
-                            for (let i in params.data) {
+                            for (let i in params.query) {
                                 cursor.value[i] = params.query[i];
                             }
 
@@ -389,7 +389,7 @@ function Database(name, version) {
 
 export { Database };
 
-// let db = Database('notes');
-// db.save({ collection: 'personal', query: { name: 'kesdsanssd' }, check: { name: 'kesdsanssd' } }).then(res => {
-//     console.log(res)
-// });
+let db = Database('notes');
+db.save({ collection: 'personal', query: { name: 'kesdsanssd', age: 23 }, check: { name: 'kesdsanssd' } }).then(res => {
+    console.log(res)
+});
