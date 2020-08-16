@@ -389,7 +389,7 @@ function Database(name, version) {
 
 export { Database };
 
-let db = Database('notes');
-db.save({ collection: 'personal', query: { name: 'kesdsanssd', age: 23 }, check: { name: 'kesdsanssd' } }).then(res => {
-    console.log(res)
-});
+// let db = Database('notes');
+// db.save({ collection: 'personal', query: { name: 'kesdsanssd', age: 23 }, check: { name: 'kesdsanssd' } }).then(res => {
+//     console.log(res)
+// });
