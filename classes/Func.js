@@ -477,6 +477,10 @@ export class Func {
         return (typeof variable !== 'undefined');
     }
 
+    isfunction(variable) {
+        return (typeof variable !== 'function');
+    }
+
     isnull(variable) {
         return variable == null;
     }
