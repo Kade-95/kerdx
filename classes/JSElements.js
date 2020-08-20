@@ -122,7 +122,7 @@ export class JSElements extends Period {
             created = html.body;
         }
 
-        if (this.isset(singleParent)) singleParent.attachElement(created, html.attachment);
+        if (this.isset(singleParent)) singleParent.attachElement(created, singleParent.attachment);
         return created;
     }
 

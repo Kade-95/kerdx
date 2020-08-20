@@ -1,8 +1,8 @@
-import {Func} from './../classes/Func.js';
+import { Func } from './../classes/Func.js';
 const func = new Func();
 
-function Piece(params = { element: '' }) {
-    let self = createElement(params);
+function Piece(params) {
+    let self = createPiece(params);
 
     self.toJson = function () {
         let element = self.nodeName.toLowerCase();
@@ -650,7 +650,7 @@ function Piece(params = { element: '' }) {
                 self.style[key] = params[key];
             });
         }
-        
+
         return func.extractCSS(self);
     }
 
@@ -771,8 +771,8 @@ function Piece(params = { element: '' }) {
         let parent = self.getParents(parentIdentifier);
         let top = self.position().top;
         let flag = false;
-        
-        if(!func.isnull(parent)){
+
+        if (!func.isnull(parent)) {
             flag = top >= 0 && top <= parent.clientHeight;
         }
         return flag;
@@ -817,7 +817,7 @@ function Piece(params = { element: '' }) {
     self.makeElement = function (params) {
         self.setKeyAsync();
 
-        let element = func.createElement(params, self);
+        let element = createPiece(params, self);
         return element;
     }
 
@@ -979,8 +979,7 @@ function Piece(params = { element: '' }) {
     }
 
     // Attatch an element to another element [append or prepend]
-    self.attachElement = function (element, attachment) {
-        attachment = attachment || 'append';
+    self.attachElement = function (element, attachment = 'append') {
         self[attachment](element);
     }
 
@@ -997,74 +996,15 @@ function Piece(params = { element: '' }) {
             callback(event);
         });
     }
-    
+
+    if (func.isset(params.children)) {
+        self.makeElement(params.children);
+    }
+
     return self;
 }
 
-function createFromObject(object, singleParent) {
-    let created, name;
-    if (object.element instanceof Element) {
-        created = object.element;
-        name = created.nodeName;
-    }
-    else {
-        name = object.element.toLowerCase();
-        created = document.createElement(object.element);//generate the element
-    }
-
-    if (func.isset(object.attributes)) {//set the attributes
-        for (var attr in object.attributes) {
-            if (attr == 'style') {//set the styles
-                created.css(object.attributes[attr]);
-            }
-            else created.setAttribute(attr, object.attributes[attr]);
-        }
-    }
-
-    if (func.isset(object.text)) {
-        created.textContent = object.text;//set the innerText
-    }
-
-    if (func.isset(object.html)) {
-        created.innerHTML = object.html;//set the innerHTML
-    }
-
-    if (func.isset(object.value)) {
-        created.value = object.value;//set the value
-    }
-
-    if (name.includes('-')) {
-        created = createFromHTML(created.outerHTML);
-    }
-
-    if (func.isset(singleParent)) {
-        singleParent.attachElement(created, object.attachment);
-    }
-
-    if (func.isset(object.children)) {
-        created.makeElement(object.children);
-    }
-
-    if (func.isset(object.options) && Array.isArray(object.options)) {//add options if isset           
-        for (var i of object.options) {
-            let option = created.makeElement({ element: 'option', value: i, text: i, attachment: 'append' });
-            if (func.isset(object.selected) && object.selected == i) {
-                option.setAttribute('selected', true);
-            }
-            if (i.toString().toLowerCase() == 'null') {
-                option.setAttribute('disabled', true);
-            }
-        }
-    }
-
-    if (func.isset(created.dataset.icon)) {
-        created.addClasses(created.dataset.icon);
-    }
-
-    return created;
-}
-
-function createFromHTML(htmlString, singleParent) {
+function pieceFromHTML(htmlString) {
     let parser = new DOMParser();
     let html = parser.parseFromString(htmlString, 'text/html');
 
@@ -1077,62 +1017,32 @@ function createFromHTML(htmlString, singleParent) {
         created = html.body;
     }
 
-    if (func.isset(singleParent)) singleParent.attachElement(created, html.attachment);
-    return created;
+    return
 }
 
-function getElement(singleParam, singleParent) {
-    var element;
-    //if params is a HTML String
-    if (typeof singleParam == 'string') {
-        element = createFromHTML(singleParam, singleParent);
-    }
-    else if (singleParam instanceof Element) {
-        element = singleParam;
-        if (func.isset(singleParent)) singleParent.attachElement(element, singleParam.attachment);
-    }
-    //if params is object
-    else if (typeof singleParam == 'object') {
-        if (singleParam.perceptorElement) {
-            element = createPerceptorElement(singleParam, singleParent);
-        }
-        else {
-            element = createFromObject(singleParam, singleParent);
-        }
-    }
-
-    if (!func.isset(element.setKey)) element.setKey();
-
-    if (func.isset(singleParam.list)) {
-        let list = element.makeElement({ element: 'datalist', options: singleParam.list });
-        element.setAttribute('list', element.dataset.domKey);
-        list.setAttribute('id', element.dataset.domKey);
-    }
-
-    if (func.isset(singleParam.state)) {
-        let owner = element.getParents(singleParam.state.owner, singleParam.state.value);
-        if (!func.isnull(owner)) {
-            owner.addState({ name: singleParam.state.name, state: element });
-            element.dataset.stateStatus = 'set';
-        } else {
-            element.dataset.stateStatus = 'pending';
-        }
-    }
-
-    return element;
-};
-
-function createElement(params, parent) {
-    if (Array.isArray(params)) {
-        let elements = [];
-        for (let param of params) {
-            elements.push(getElement(param, parent));
-        }
-        return elements;
-    } else {
-        let element = getElement(params, parent);
-        return element;
-    }
+function pieceFromObject(params) {
+    return document.createElement(params.element);
 }
+
+function createPiece(params, parent) {
+    let piece;
+    if (params instanceof Element) {
+        piece = params;
+    }
+    else if (typeof params == 'string') {
+        piece = pieceFromHTML(params);
+    }
+    else if (typeof params == 'object') {
+        piece = pieceFromObject(params);
+    }
+
+    if (func.isset(parent) && parent instanceof Element) {
+        Piece(parent);
+        params.attachElement(piece, parent.attachElement);
+    }
+
+    return piece;
+}
+
 
 export { Piece };

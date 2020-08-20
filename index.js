@@ -14,6 +14,7 @@ import { ObjectLibrary } from './functions/Objects.js';
 import { MathsLibrary } from './functions/Math.js';
 import { AnalysisLibrary } from './functions/Analytics.js';
 import { Database } from './functions/Database.js';
+import { Piece } from './functions/Piece.js';
 
 class Kerdx extends Components {
     constructor() {
@@ -39,7 +40,6 @@ class Kerdx extends Components {
             'https://kade-95.github.io/kerdx/css/json.css',
             'https://kade-95.github.io/kerdx/css/popup.css'
         ];
-
         for (let style of this.styles) {
             this.loadCss(style);
         }
