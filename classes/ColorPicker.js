@@ -6,7 +6,7 @@ class ColorPicker extends JSElements {
         super();
     }
 
-    colorType(color) {
+    colorType(color = '#ffffff') {
         let type;
         if (color.indexOf('#') == 0 && (color.length - 1) % 3 == 0) {
             type = 'hex';
@@ -27,7 +27,7 @@ class ColorPicker extends JSElements {
         return type
     }
 
-    hexToRGB(hex) {
+    hexToRGB(hex = '#ffffff') {
         hex = '0x' + hex.replace('#', '');
         let red = (hex >> 16) & 0xFF,
             green = (hex >> 8) & 0xFF,
@@ -36,7 +36,7 @@ class ColorPicker extends JSElements {
         return `rgb(${red}, ${green}, ${blue})`;
     }
 
-    rgbToHex(color) {
+    rgbToHex(color = 'rgb(0, 0, 0)') {
         let start = color.indexOf('(') + 1;
         let end = color.indexOf(')');
         let [r, g, b, a] = color.slice(start, end).split(',');
@@ -47,7 +47,7 @@ class ColorPicker extends JSElements {
         return hex;
     }
 
-    addOpacity(color, opacity) {
+    addOpacity(color = 'rgb(0, 0, 0)', opacity = 0.5) {
         let start = color.indexOf('(') + 1;
         let end = color.indexOf(')');
         let points = color.slice(start, end).split(',');
@@ -56,17 +56,17 @@ class ColorPicker extends JSElements {
         return `rgba(${points.join(',')})`;
     }
 
-    getOpacity(color) {
+    getOpacity(color = 'rgb(0, 0, 0)') {
         let [r, g, b, a] = this.inBetween(color, '(', ')').split(',');
         return a.trim();
     }
 
-    invertColor(color) {
+    invertColor(color = '#ffffff') {
         let type = this.colorType(color);
         let invert;
         if (type == 'hex') {
             color = color.replace('#', '');
-            invert = '#'+this.invertHex(color);
+            invert = '#' + this.invertHex(color);
         }
         else if (type == 'rgb') {
             color = this.rgbToHex(color).replace('#', '');
@@ -83,7 +83,7 @@ class ColorPicker extends JSElements {
         return invert;
     }
 
-    invertHex(hex) {
+    invertHex(hex = 'ffffff') {
         return (Number(`0x1${hex}`) ^ 0xFFFFFF).toString(16).substr(1).toUpperCase()
     }
 }

@@ -16,7 +16,7 @@ export class API extends Func {
         return this.states[url];
     }
 
-    makeWebapp(callback) {
+    makeWebapp(callback = () => { }) {
         document.addEventListener('click', event => {
             let anchor = event.target;
             let parentAnchor = event.target.getParents('a');
@@ -47,18 +47,18 @@ export class API extends Func {
         window.onpopstate = callback;
     }
 
-    prepareUrl(url) {        
+    prepareUrl(url = '') {
         if (!url.includes(location.origin)) {
             url = location.origin + '/' + url;
         }
         else if (!url.includes(location.protocol)) {
             url = location.protocol + '//' + url;
         }
-        
+
         return url;
     }
 
-    ajax(params) {
+    ajax(params = { async: true, data: {}, url: '', method: '', secured: false }) {
         params.async = params.async || true;
         params.data = params.data || {};
         params.url = params.url || './';
@@ -67,7 +67,7 @@ export class API extends Func {
 
         if (params.secured) {
             params.url = 'https://cors-anywhere.herokuapp.com/' + params.url;
-        }        
+        }
 
         let data = new FormData();
         if (params.data instanceof FormData) {

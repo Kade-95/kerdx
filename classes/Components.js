@@ -7,7 +7,7 @@ export class Components extends Template {
         super();
     }
 
-    createTab(params) {
+    createTab(params = { titles: [] }) {
         var tabTitle = this.createElement({ element: 'ul', attributes: { class: 'tab' } });
         params.view.append(tabTitle);
 
@@ -19,14 +19,14 @@ export class Components extends Template {
 
         tabTitle.findAll('li').forEach(node => {
             node.addEventListener('click', event => {
-                var url = this.urlSplitter(fullUrl);
+                var url = this.urlSplitter(location.href);
                 url.vars.tab = node.textContent.toLowerCase();
                 router.render({ url: '?' + this.urlSplitter(this.urlMerger(url, 'tab')).queries });
             })
         })
     }
 
-    cell(params) {
+    cell(params = { element: 'input', attributes: {}, name: '', dataAttributes: {}, value: '', text: '', html: '', edit: '' }) {
         //set the cell-data id
         var id = this.stringReplace(params.name, ' ', '-') + '-cell';
 
@@ -99,50 +99,10 @@ export class Components extends Template {
         return cell;
     }
 
-    dataCell(params) {
-        let cell = this.cell(params);
-
-        data.onfocus = focused => {
-            var previousValue = data.value;
-            data.onblur = blurred => {
-                var currentValue = data.value;
-                if (currentValue != previousValue) {
-                    if (this.isset(params.update) && data.value != '') {
-                        params.update['new'] = {};
-                        params.update['new'][this.stringReplace(params.name, ' ', '')] = data.value;
-                        if (this.isset(params.update.check)) {
-                            params.update.check[params.name] = data.value;
-                            queryHandler.db('checkThen', params.update).then(result => {
-                                if (result == 'found') {
-                                    this.message({ text: `${params.name} already exists`, temp: '' });
-                                }
-                                else {
-                                    this.message({ text: params.update.work + ' Successful', temp: '' });
-                                }
-                            }).catch(err => {
-                                this.message({ text: params.update.work + ' Unsuccessful' });
-                            });
-                        } else {
-                            queryHandler.db('update', params.update).then(result => {
-                                this.message({ text: 'Update Successful', temp: '' });
-                            }).catch(err => {
-                                this.message({ text: 'Update Unsuccessful' });
-                            });
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    message(params) {
+    message(params = { link: '', text: '', temp: 0 }) {
         var me = this.createElement({
             element: 'span', attributes: { class: 'alert' }, children: [
-                this.isset(params.link) ?
-                    this.createElement({ element: 'a', text: params.text, attributes: { class: 'text', href: params.link } })
-                    :
-                    this.createElement({ element: 'a', text: params.text, attributes: { class: 'text' } }),
-                ,
+                this.createElement({ element: 'a', text: params.text, attributes: { class: 'text', href: params.link } }),
                 this.createElement({ element: 'span', attributes: { class: 'close' } })
             ]
         });
@@ -161,7 +121,7 @@ export class Components extends Template {
         body.find('#notification-block').append(me);
     }
 
-    createTable(params) {
+    createTable(params = { title: '', contents: {}, projection: {}, rename: {}, sort: false, search: false, filter: [] }) {
         //create the table element   
         let headers = [],//the headers
             columns = {},
@@ -276,7 +236,7 @@ export class Components extends Template {
         return data;
     }
 
-    sortTable(table, by, direction) {
+    sortTable(table, by = '', direction = 1) {
         let data = this.getTableData(table);
 
         data.sort((a, b) => {
@@ -298,7 +258,7 @@ export class Components extends Template {
         return data;
     }
 
-    listenTable(params, callbacks) {
+    listenTable(params = { table: {}, options =[] }, callbacks = { click: () => { }, filter: () => { } }) {
         params.options = params.options || [];
         callbacks = callbacks || [];
         let table = params.table.find('.kerdx-table');
@@ -497,7 +457,7 @@ export class Components extends Template {
         }
     }
 
-    createForm(params) {
+    createForm(params = { element: '', title: '', columns: 1, contents: {}, required: [], buttons: {} }) {
         let form = this.createElement({
             element: params.element || 'form', attributes: params.attributes, children: [
                 { element: 'h3', attributes: { class: 'kerdx-form-title' }, text: params.title },
@@ -539,7 +499,7 @@ export class Components extends Template {
         return form;
     }
 
-    picker(params, callback) {
+    picker(params = { title: '', contents: [] }, callback = (event) => { }) {
         let picker = this.createElement({
             element: 'div', attributes: { class: 'kerdx-picker' }, children: [
                 { element: 'h3', attributes: { class: 'kerdx-picker-title' }, text: params.title || '' },
@@ -560,7 +520,7 @@ export class Components extends Template {
         return picker;
     }
 
-    popUp(content, params = {}) {
+    popUp(content, params = { title: '', attributes: {} }) {
         let container = params.container || document.body;
         let title = params.title || '';
 
@@ -612,7 +572,7 @@ export class Components extends Template {
         return popUp;
     }
 
-    createSelect(params) {
+    createSelect(params = { value: '', contents: {}, multiple: false }) {
         let selected = [],
             allowNavigate = false,
             scrollPosition = -1,
@@ -845,7 +805,7 @@ export class Components extends Template {
         return select;
     }
 
-    choose(params) {
+    choose(params = { note: '', options: [] }) {
         let chooseWindow = this.createElement({
             element: 'span', attributes: { class: 'crater-choose' }, children: [
                 { element: 'p', attributes: { class: 'crater-choose-note' }, text: params.note },
@@ -878,7 +838,7 @@ export class Components extends Template {
         };
     }
 
-    textEditor(params) {
+    textEditor(params = { id: '', width: 'max-width' }) {
         params = params || {};
         params.id = params.id || 'text-editor';
         let textEditor = this.createElement({
@@ -1105,7 +1065,7 @@ export class Components extends Template {
         return textEditor;
     }
 
-    displayData(data, container) {
+    displayData(data = {}, container) {
         let lineNumbers = [];
         let displayString = (value) => {
             return this.createElement({ element: 'span', attributes: { class: 'kerdx-data-str' }, text: `"${value}"` });

@@ -2,12 +2,10 @@ import { Func } from './Func.js';
 let func = new Func()
 
 export class Matrix {
-    constructor(params) {
-        if (typeof params !== 'undefined') {
-            Object.keys(params).map(key => {
-                this[key] = params[key];
-            });
-        }
+    constructor(params = { rows: 2, cols: 2, contents: [] }) {
+        Object.keys(params).map(key => {
+            this[key] = params[key];
+        });
 
         this.rows = this.rows || 2;
         this.cols = this.cols || 2;
@@ -15,7 +13,7 @@ export class Matrix {
         this.setData(this.contents);
     }
 
-    setData(contents) {
+    setData(contents = []) {
         this.contents = contents;
         this.data = [];
         for (let i = 0; i < this.rows; i++) {
@@ -31,7 +29,7 @@ export class Matrix {
         return { rows, cols };
     }
 
-    add(n) {
+    add(n = 0) {
         if (n instanceof Matrix) {
             for (let i = 0; i < this.rows; i++) {
                 for (let j = 0; j < this.cols; j++) {
@@ -54,7 +52,7 @@ export class Matrix {
         }
     }
 
-    subtract(n) {
+    subtract(n = 0) {
         if (n instanceof Matrix) {
             for (let i = 0; i < this.rows; i++) {
                 for (let j = 0; j < this.cols; j++) {
@@ -77,7 +75,7 @@ export class Matrix {
         }
     }
 
-    multiply(n) {
+    multiply(n = 1) {
         if (n instanceof Matrix) {
             for (let i = 0; i < this.rows; i++) {
                 for (let j = 0; j < n.cols; j++) {
@@ -118,7 +116,7 @@ export class Matrix {
         });
     }
 
-    map(callback) {
+    map(callback = (value, ...pos) => { }) {
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
                 let value = this.data[i][j];
@@ -143,7 +141,7 @@ export class Matrix {
         return this.contents;
     }
 
-    reshape(params) {
+    reshape(params = { rows: 2, cols: 2 }) {
         this.toArray();
         this.rows = params.rows;
         this.cols = params.cols;
@@ -182,7 +180,7 @@ export class Matrix {
         return array;
     }
 
-    static subtract(a, b) {
+    static subtract(a = new Matrix(), b) {
         let contents = [], rows = a.rows, cols = a.cols;
 
         if (b instanceof Matrix) {
@@ -210,7 +208,7 @@ export class Matrix {
         return new Matrix({ rows, cols, contents });
     }
 
-    static add(a, b) {
+    static add(a = new Matrix(), b) {
         let contents = [], rows = a.rows, cols = a.cols;
 
         if (b instanceof Matrix) {
@@ -238,7 +236,7 @@ export class Matrix {
         return new Matrix({ rows, cols, contents });
     }
 
-    static multiply(a, b) {
+    static multiply(a = new Matrix(), b) {
         let contents = [], rows, cols;
 
         if (b instanceof Matrix) {
@@ -283,7 +281,7 @@ export class Matrix {
         return new Matrix({ rows, cols, contents });
     }
 
-    static divide(a, b) {
+    static divide(a = new Matrix(), b) {
         let contents = [], rows, cols;
 
         if (b instanceof Matrix) {
@@ -328,13 +326,13 @@ export class Matrix {
         return new Matrix({ rows, cols, contents });
     }
 
-    static randomize(matrix) {
+    static randomize(matrix = new Matrix()) {
         return Matrix.map(matrix, (value => {
             return func.random();
         }));
     }
 
-    static transpose(matrix) {
+    static transpose(matrix = new Matrix()) {
         let newMatrix = new Matrix({ rows: matrix.cols, cols: matrix.rows });
         for (let i = 0; i < matrix.rows; i++) {
             for (let j = 0; j < matrix.cols; j++) {
@@ -344,7 +342,7 @@ export class Matrix {
         return newMatrix;
     }
 
-    static map(matrix, callback) {
+    static map(matrix = new Matrix(), callback = () => { }) {
         let newMatrix = new Matrix({ rows: matrix.rows, cols: matrix.cols });
         for (let i = 0; i < matrix.rows; i++) {
             for (let j = 0; j < matrix.cols; j++) {
@@ -355,22 +353,22 @@ export class Matrix {
         return newMatrix;
     }
 
-    static fromArray(contents) {
+    static fromArray(contents = []) {
         return new Matrix({ rows: contents.length, cols: 1, contents });
     }
 
-    static reshape(params) {
+    static reshape(params = { rows: 2, cols: 2, matrix: new Matrix }) {
         params.contents = Matrix.toArray(params.matrix);
         delete params.matrix;
         return new Matrix(params);
     }
 
-    static normalize(matrix) {
+    static normalize(matrix = new Matrix()) {
         let contents = Math.normalize(Matrix.toArray(matrix));
         return new Matrix({ rows: matrix.rows, cols: matrix.cols, contents });
     }
 
-    static diagonal(array) {
+    static diagonal(array = []) {
         let matrix = Matrix.square(array.length);
         for (let i in matrix.data) {
             for (let j in matrix.data[i]) {
@@ -383,7 +381,7 @@ export class Matrix {
         return matrix;
     }
 
-    static unit(size) {
+    static unit(size = 2) {
         let matrix = Matrix.square(size);
         for (let i in matrix.data) {
             for (let j in matrix.data[i]) {
@@ -396,11 +394,11 @@ export class Matrix {
         return matrix;
     }
 
-    static square(size) {
+    static square(size = 2) {
         return new Matrix({ rows: size, cols: size });
     }
 
-    static fromMatrixCols(matrix, ...cols) {
+    static fromMatrixCols(matrix = new Matrix(), ...cols) {
         let value = matrix.getColumns(...cols);
         let contents = Array.flatten(value);
         let newMatrix = new Matrix({ rows: value.length, cols: matrix.cols, contents });
@@ -408,7 +406,7 @@ export class Matrix {
         return newMatrix;
     }
 
-    static deepMatrix(dimensions, contents) {
+    static deepMatrix(dimensions = [], contents = []) {
         //split the dimensions into an array of arrays of length 2
         let matrixDimensions = [];
         for (let i = 0; i < dimensions.length; i++) {

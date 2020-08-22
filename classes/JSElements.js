@@ -5,7 +5,7 @@ export class JSElements extends Period {
         super();
     }
 
-    loadCss(href) {
+    loadCss(href = '') {
         document.head.makeElement({ element: 'link', attributes: { rel: 'stylesheet', type: 'text/css', href } });
     }
 
@@ -46,7 +46,7 @@ export class JSElements extends Period {
         return { element, attributes, children }
     }
 
-    createFromObject(object, singleParent) {
+    createFromObject(object = {}, singleParent) {
         let created, name;
         if (object.element instanceof Element) {
             created = object.element;
@@ -109,7 +109,7 @@ export class JSElements extends Period {
         return created;
     }
 
-    createFromHTML(htmlString, singleParent) {
+    createFromHTML(htmlString = '', singleParent) {
         let parser = new DOMParser();
         let html = parser.parseFromString(htmlString, 'text/html');
 
@@ -134,7 +134,7 @@ export class JSElements extends Period {
         return created;
     }
 
-    getElement(singleParam, singleParent) {
+    getElement(singleParam = { element: '', attributes: {} }, singleParent) {
         var element;
         //if params is a HTML String
         if (typeof singleParam == 'string') {
@@ -175,7 +175,7 @@ export class JSElements extends Period {
         return element;
     };
 
-    createElement(params, parent) {
+    createElement(params = { element: '', attributes: {} }, parent = new Element()) {
         if (Array.isArray(params)) {
             let elements = [];
             for (let param of params) {
@@ -312,7 +312,7 @@ export class JSElements extends Period {
         }
     }
 
-    imageToJson(file, callBack) {
+    imageToJson(file, callBack = () => { }) {
         let fileReader = new FileReader();
         let myfile = {};
         fileReader.onload = (event) => {

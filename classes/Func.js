@@ -1,3 +1,5 @@
+import { json } from "mathjs";
+
 export class Func {
 
     constructor() {
@@ -35,7 +37,7 @@ export class Func {
         return value;
     }
 
-    indexAt(haystack, needle, pos) {
+    indexAt(haystack = '', needle = '', pos = 0) {
         pos = pos || 0;
         if (haystack.indexOf(needle) == -1) {
             return -1;
@@ -57,7 +59,7 @@ export class Func {
         return index;
     }
 
-    combine(haystack, first, second, pos) {
+    combine(haystack = '', first = '', second = '', pos = 0) {
         pos = pos || 0;//initialize position if not set
         let at1 = pos,
             at2 = first === second ? pos + 1 : pos; //check if it is the same and change position
@@ -71,7 +73,7 @@ export class Func {
         return haystack.slice(start, end + second.length);
     }
 
-    allCombine(haystack, first, second) {
+    allCombine(haystack = '', first = '', second = '') {
         let pos = 0;
         let all = [];
         let found;
@@ -86,7 +88,7 @@ export class Func {
         return all;
     }
 
-    inBetween(haystack, first, second, pos) {
+    inBetween(haystack = '', first = '', second = '', pos = 0) {
         pos = pos || 0;//initialize position if not set
         let at1 = pos,
             at2 = first === second ? pos + 1 : pos; //check if it is the same and change position
@@ -100,7 +102,7 @@ export class Func {
         return haystack.slice(start + first.length, end);
     }
 
-    allInBetween(haystack, first, second) {
+    allInBetween(haystack = '', first = '', second = '') {
         let pos = 0;
         let all = [];
         let found;
@@ -145,7 +147,7 @@ export class Func {
         return months;
     }
 
-    jsStyleName(name) {
+    jsStyleName(name = '') {
         let newName = '';
         for (let i = 0; i < name.length; i++) {
             if (name[i] == '-') {
@@ -157,7 +159,7 @@ export class Func {
         return newName;
     }
 
-    cssStyleName(name) {
+    cssStyleName(name = '') {
         let newName = '';
         for (let i = 0; i < name.length; i++) {
             if (this.isCapital(name[i])) newName += '-';
@@ -167,7 +169,7 @@ export class Func {
         return newName;
     }
 
-    textToCamelCased(text) {
+    textToCamelCased(text = '') {
         let value = '';
         for (let i in text) {
             if (text[i] == ' ') continue;
@@ -178,7 +180,7 @@ export class Func {
         return value;
     }
 
-    camelCasedToText(camelCase) {
+    camelCasedToText(camelCase = '') {
         let value = '';
         for (let i in camelCase) {
             if (i != 0 && this.isCapital(camelCase[i])) value += ` ${camelCase[i].toLowerCase()}`;
@@ -187,9 +189,13 @@ export class Func {
         return value;
     }
 
-    random(params) {
+    emptyObject(obj) {
+        return JSON.stringify(obj) = JSON.stringify({});
+    }
+
+    random(params = { limit: 1, range: 1 }) {
         let random;
-        if (!this.isset(params)) {
+        if (this.emptyObject(params)) {
             random = Math.random() * 2 - 1;
         }
         else if (this.isset(params.limit)) {
@@ -201,7 +207,7 @@ export class Func {
         return random;
     }
 
-    range(end, start) {
+    range(end = 1, start = 1) {
         let value = [];
         for (let i = start || 0; i < end; i++) {
             value.push(i);
@@ -210,7 +216,7 @@ export class Func {
         return value;
     }
 
-    generateRandom(length) {
+    generateRandom(length = 5) {
         var string = this.capitals + this.smalls + this.digits;
         var alphanumeric = '';
         for (var i = 0; i < length; i++) {
@@ -219,7 +225,7 @@ export class Func {
         return alphanumeric;
     }
 
-    generateKey(length) {
+    generateKey(length = 5) {
         let key = Date.now().toString(length) + Math.random().toString(length).slice(2);//generate the key
         return key;
     }
@@ -230,7 +236,7 @@ export class Func {
         return this.urlMerger(url, params.toAdd);
     }
 
-    addCommaToMoney(money) {
+    addCommaToMoney(money = '') {
         var inverse = '';
         for (var i = money.length - 1; i >= 0; i--) {
             inverse += money[i];
@@ -252,13 +258,13 @@ export class Func {
         return inverse;
     }
 
-    isCapital(value) {
+    isCapital(value = '') {
         if (value.length == 1) {
             return this.capitals.includes(value);
         }
     }
 
-    capitalize(value) {
+    capitalize(value = '') {
         if (!this.isCapital(value[0])) {
             value = value.split('');
             value[0] = this.capitals[this.smalls.indexOf(value[0])];
@@ -267,7 +273,7 @@ export class Func {
         return value;
     }
 
-    flip(haystack) {
+    flip(haystack = '') {
         var flipped = (Array.isArray(haystack)) ? [] : '';
         for (var i = haystack.length - 1; i >= 0; i--) {
             if (Array.isArray(haystack)) {
@@ -281,19 +287,19 @@ export class Func {
         return flipped;
     }
 
-    isSmall(value) {
+    isSmall(value = '') {
         if (value.length == 1) {
             return this.smalls.includes(value);
         }
     }
 
-    isSymbol(value) {
+    isSymbol(value = '') {
         if (value.length == 1) {
             return this.symbols.includes(value);
         }
     }
 
-    isName(value) {
+    isName(value = '') {
         for (var x in value) {
             if (this.isDigit(value[x])) {
                 return false;
@@ -302,7 +308,7 @@ export class Func {
         return true;
     }
 
-    isNumber(value) {
+    isNumber(value = '') {
         for (var x in value) {
             if (!this.isDigit(value[x])) {
                 return false;
@@ -311,7 +317,7 @@ export class Func {
         return value;
     }
 
-    isPasswordValid(value) {
+    isPasswordValid(value = '') {
         var len = value.length;
         if (len > 7) {
             for (var a in value) {
@@ -335,12 +341,12 @@ export class Func {
         return false;
     }
 
-    isSubString(haystack, value) {
+    isSubString(haystack = '', value = '') {
         if (haystack.indexOf(value) != -1) return true;
         return false;
     }
 
-    isDigit(value) {
+    isDigit(value = '') {
         value = new String(value)
         if (value.length == 1) {
             return this.digits.includes(value);
@@ -348,7 +354,7 @@ export class Func {
         return false;
     }
 
-    isEmail(value) {
+    isEmail(value = '') {
         var email_parts = value.split('@');
         if (email_parts.length != 2) {
             return false;
@@ -371,11 +377,11 @@ export class Func {
         return true;
     }
 
-    objectLength(object) {
+    objectLength(object = {}) {
         return Object.keys(object).length;
     }
 
-    isSpaceString(value) {
+    isSpaceString(value = '') {
         if (value == '') {
             return true;
         } else {
@@ -388,7 +394,7 @@ export class Func {
         return true;
     }
 
-    hasString(haystack, needle) {
+    hasString(haystack = '', needle = '') {
         for (var x in haystack) {
             if (needle == haystack[x]) {
                 return true;
@@ -397,7 +403,7 @@ export class Func {
         return false;
     }
 
-    trem(needle) {
+    trem(needle = '') {
         //remove the prepended spaces
         if (needle[0] == ' ') {
             var new_needle = '';
@@ -422,7 +428,7 @@ export class Func {
         return needle;
     }
 
-    stringReplace(word, from, to) {
+    stringReplace(word = '', from = '', to = '') {
         var value = '';
         for (let i = 0; i < word.length; i++) {
             if (word[i] == from) {
@@ -435,14 +441,14 @@ export class Func {
         return value;
     }
 
-    converToRealPath(path) {
+    converToRealPath(path = '') {
         if (path[path.length - 1] != '/') {
             path += '/';
         }
         return path;
     }
 
-    isSpacialCharacter(char) {
+    isSpacialCharacter(char = '') {
         var specialcharacters = "'\\/:?*<>|!.";
         for (var i = 0; i < specialcharacters.length; i++) {
             if (specialcharacters[i] == char) {
@@ -452,7 +458,7 @@ export class Func {
         return false;
     }
 
-    countChar(haystack, needle) {
+    countChar(haystack = '', needle = '') {
         var j = 0;
         for (var i = 0; i < haystack.length; i++) {
             if (haystack[i] == needle) {
@@ -462,7 +468,7 @@ export class Func {
         return j;
     }
 
-    occurancesOf(haystack, needle) {
+    occurancesOf(haystack = '', needle = '') {
         let occurances = [];
         for (let i = 0; i < haystack.length; i++) {
             if (haystack[i] === needle) {
@@ -478,7 +484,7 @@ export class Func {
     }
 
     isfunction(variable) {
-        return (typeof variable !== 'function');
+        return (typeof variable === 'function');
     }
 
     isnull(variable) {
@@ -489,7 +495,7 @@ export class Func {
         return this.isset(variable) && !this.isnull(variable);
     }
 
-    async runParallel(functions, callBack) {
+    async runParallel(functions = [], callBack = () => { }) {
         var results = {};
         for (var f in functions) {
             results[f] = await functions[f];
@@ -501,7 +507,7 @@ export class Func {
         return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
     }
 
-    urlMerger(splitUrl, lastQuery) {
+    urlMerger(splitUrl = '', lastQuery = '') {
         var hostType = (this.isset(splitUrl.hostType)) ? splitUrl.hostType : 'http';
         var hostName = (this.isset(splitUrl.hostName)) ? splitUrl.hostName : '';
         var port = (this.isset(splitUrl.host)) ? splitUrl.port : '';
@@ -519,7 +525,7 @@ export class Func {
         return location;
     }
 
-    urlSplitter(location) {
+    urlSplitter(location = '') {
         if (this.isset(location)) {
             location = location.toString();
             var httpType = (location.indexOf('://') === -1) ? null : location.split('://')[0];
@@ -548,7 +554,7 @@ export class Func {
         }
     }
 
-    getUrlVars(location) {
+    getUrlVars(location = '') {
         location = location.toString();
         var queries = (location.indexOf('?') === -1) ? null : location.split('?').pop(0);
         var vars = {};
@@ -565,95 +571,5 @@ export class Func {
             }
         }
         return vars;
-    }
-
-    extract(arr, start, end) {
-        var userIndex = typeof start === 'number',
-            i,
-            j;
-        if (userIndex) {
-            i = start;
-            if (end) {
-                j = arr.indexOf(end, i)
-                return (j === -1) ? ['', -1] : [(i === j) ? '' : arr.slice(i, j), j + end.length];
-            } else return arr.slice(i)
-        } else {
-            i = arr.indexOf(start)
-            if (i !== -1) {
-                i += start.length;
-                if (end) {
-                    j = arr.indexOf(end, i);
-                    return (j !== -1) ? arr.slice(i, j) : ['', -1];
-                } else return arr.slice(i)
-            }
-            return [];
-        }
-    }
-
-    parseForm(boundary, data) {
-        var form = {},
-            delimeter = Buffer.from('\r\n--' + boundary),
-            body = this.extract(data, '--' + boundary + '\r\n'),
-            CR = Buffer.from('\r\n\r\n'),
-            i = 0,
-            head,
-            name,
-            filename,
-            value,
-            obj,
-            type;
-        if (body) {
-            while (i !== -1) {
-                [head, i] = this.extract(body, i, CR);
-                name = this.extract(head, '; name="', '"').toString();
-                filename = this.extract(head, '; filename="', '"').toString();
-                type = this.extract(head.toString(), 'Content-Type: ');
-                [value, i] = this.extract(body, i, delimeter);
-                if (name) {
-                    obj = { filename: filename, type: type, value: value };
-                    if (form.hasOwnProperty(name)) {//avoid duplicates
-                        if (Array.isArray(form[name])) {
-                            form[name].push(obj);
-                        } else {
-                            form[name] = [form[name], obj];
-                        }
-                    } else {
-                        form[name] = obj;
-                    }
-                }
-                if (body[i] === 45 && body[i + 1] === 45) break;// '--'
-                if (body[i] === 13 && body[i + 1] === 10) {
-                    i += 2; // \r\n
-                } else {
-                    //error
-                }
-            }
-        }
-        return form;
-    }
-
-    readFileAsync(filename) {
-        return new Promise(function (resolve, reject) {
-            fs.readFile(filename, function (err, data) {
-                if (err)
-                    reject(err);
-                else
-                    resolve(data);
-            });
-        });
-    }
-
-    getIp(req) {
-        var ip = req.headers['x-forworded-for'];
-        if (ip) {
-            ip = ip.split(',')[0];
-        } else {
-            ip = req.connection.remoteAddress;
-        }
-        return ip;
-    }
-
-    getEnvironment() {
-        return typeof global == 'undefined' ? true : false;
     }
 }
