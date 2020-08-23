@@ -6,15 +6,13 @@ import { API } from './classes/API.js';
 import { Components } from './classes/Components.js';
 import { ColorPicker } from './classes/ColorPicker.js';
 import { Period } from './classes/Period.js';
-import { Ledger } from './classes/Ledger.js';
-import { Shadow } from './classes/Shadow.js';
 import { Icons } from './Icons.js';
 import { ArrayLibrary } from './functions/Array.js';
 import { ObjectLibrary } from './functions/Objects.js';
 import { MathsLibrary } from './functions/Math.js';
 import { AnalysisLibrary } from './functions/Analytics.js';
 import { Database } from './functions/Database.js';
-import { Piece } from './functions/Piece.js';
+import { Shadow } from './functions/Shadow.js';
 
 class Kerdx extends Components {
     constructor() {
