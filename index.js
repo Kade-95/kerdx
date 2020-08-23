@@ -56,7 +56,6 @@ export {
     NeuralNetwork,
     Icons,
     API,
-    Ledger,
     Shadow,
     ArrayLibrary,
     ObjectLibrary,
