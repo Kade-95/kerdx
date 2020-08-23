@@ -45,6 +45,7 @@ class Kerdx extends Components {
 }
 
 export {
+    Kerdx,
     Period,
     Matrix,
     Func,
