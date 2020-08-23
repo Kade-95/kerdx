@@ -258,7 +258,7 @@ export class Components extends Template {
         return data;
     }
 
-    listenTable(params = { table: {}, options =[] }, callbacks = { click: () => { }, filter: () => { } }) {
+    listenTable(params = { table: {}, options: [] }, callbacks = { click: () => { }, filter: () => { } }) {
         params.options = params.options || [];
         callbacks = callbacks || [];
         let table = params.table.find('.kerdx-table');

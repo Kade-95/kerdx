@@ -7,12 +7,12 @@ import { Components } from './classes/Components.js';
 import { ColorPicker } from './classes/ColorPicker.js';
 import { Period } from './classes/Period.js';
 import { Icons } from './Icons.js';
+import { Shadow } from './functions/Shadow.js';
 import { ArrayLibrary } from './functions/Array.js';
 import { ObjectLibrary } from './functions/Objects.js';
 import { MathsLibrary } from './functions/Math.js';
 import { AnalysisLibrary } from './functions/Analytics.js';
 import { Database } from './functions/Database.js';
-import { Shadow } from './functions/Shadow.js';
 
 class Kerdx extends Components {
     constructor() {
@@ -44,10 +44,7 @@ class Kerdx extends Components {
     }
 }
 
-// let R = extendMultiple(Components, API);
-
 export {
-    Kerdx,
     Period,
     Matrix,
     Func,
@@ -63,5 +60,3 @@ export {
     AnalysisLibrary,
     Database
 };
-
-window.kerdx = new Kerdx();

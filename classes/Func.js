@@ -1,5 +1,3 @@
-import { json } from "mathjs";
-
 export class Func {
 
     constructor() {
