@@ -187,10 +187,6 @@ export class Func {
         return value;
     }
 
-    emptyObject(obj) {
-        return JSON.stringify(obj) = JSON.stringify({});
-    }
-
     random(params = { limit: 1, range: 1 }) {
         let random;
         if (this.emptyObject(params)) {
