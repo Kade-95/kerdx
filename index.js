@@ -46,6 +46,7 @@ class Kerdx extends Components {
 
 export {
     Kerdx,
+    ColorPicker,
     Period,
     Matrix,
     Func,
