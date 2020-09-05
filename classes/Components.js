@@ -1153,7 +1153,7 @@ export class Components extends Template {
             }
         }
         let lineHeight = '25px';
-        let displayed = container.makeElement({
+        let displayed = this.createElement({
             element: 'pre', attributes: { class: 'kerdx-data-window' }, children: [
                 {
                     element: 'span', attributes: { class: 'kerdx-data-line', style: { lineHeight } }
@@ -1168,6 +1168,10 @@ export class Components extends Template {
                 }
             ]
         });
+
+        if(this.isset(container)){
+            container.append(displayed);
+        }
 
         let code = displayed.find('.kerdx-data-code'),
             numbers,
