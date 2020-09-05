@@ -1186,7 +1186,7 @@ export class Components extends Template {
         let setRange = (block) => {
             let start = Math.floor((block.position().top - code.position().top) / parseInt(lineHeight)) + 1;
             let end = Math.floor((block.position().bottom - code.position().top) / parseInt(lineHeight)) + 1;
-            block.range = kerdx.range(end, start);
+            block.range = this.range(end, start);
         }
 
         let setNumbers = () => {
