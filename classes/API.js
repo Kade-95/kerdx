@@ -49,7 +49,10 @@ export class API extends Func {
 
     prepareUrl(url = '') {
         if (!url.includes(location.origin)) {
-            url = location.origin + '/' + url;
+            let splitUrl = this.urlSplitter(url);
+            if(splitUrl.location == location.origin){
+                url = location.origin + '/' + url;
+            }
         }
         else if (!url.includes(location.protocol)) {
             url = location.protocol + '//' + url;

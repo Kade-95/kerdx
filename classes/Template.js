@@ -15,6 +15,13 @@ export class Template extends JSElements {
         //Framework with jsdom
         let self = this;
 
+        Element.prototype.changeNodeName = function (name) {
+            let structure = this.toJson();
+            structure.element = name;
+            let element = self.createElement(structure);
+            return element;
+        };
+
         Element.prototype.toJson = function () {
             let element = this.nodeName.toLowerCase();
             let attributes = this.getAttributes();
@@ -820,7 +827,7 @@ export class Template extends JSElements {
 
         // Get the values of a list of attributes
         Element.prototype.getAttributes = function (names = []) {
-            if (!self.isset(names)) names = this.getAttributeNames();
+            if (names.length == 0) names = this.getAttributeNames();
             let attributes = {};
 
             for (let name of names) {

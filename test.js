@@ -1,6 +1,15 @@
 import { ColorPicker, Kerdx } from './index.js';
-window.colorPicker = new ColorPicker();
+let kerdx = new Kerdx();
+
+let route = () => {
+    document.body.makeElement({
+        element: 'a', attributes: { href: 'https://google.com', target: '_blank' }, text: 'Click Me.'
+    });
+}
 
 document.addEventListener('DOMContentLoaded', event => {
-    document.body.makeElement(colorPicker.draw({width: 200, height: 200}))
+    route();
+    kerdx.api.makeWebapp(event => {
+        route();
+    });
 });
