@@ -101,7 +101,7 @@ function Database(name, version) {
                         }
 
                         transaction.oncomplete = event => {
-                            resolve({action: 'emptycollection', removedCount, ok: removedCount == foundCount });
+                            resolve({ action: 'emptycollection', removedCount, ok: removedCount == foundCount });
                         }
                         foundCount = found.length;
                         for (let data of found) {
@@ -291,8 +291,10 @@ function Database(name, version) {
 
                 request.onsuccess = (event) => {
                     let cursor = event.target.result;
+                    let found = false;
                     if (cursor) {
                         if (self.objectLibrary.checkMatch(cursor.value, params.check)) {//retrieve the matched documents
+                            found = true;
                             for (let i in params.query) {
                                 cursor.value[i] = params.query[i];
                             }
@@ -312,7 +314,7 @@ function Database(name, version) {
                             }
                         }
 
-                        if (params.many == true) {
+                        if (params.many == true || found == false) {
                             cursor.continue();
                         }
                     }
@@ -323,7 +325,7 @@ function Database(name, version) {
         });
     }
 
-    self.save = function (params) {
+    self.save = function (params = { collection: '', query: {}, check: {} }) {
         //check existence of document
         return self.documentExists({ collection: params.collection, query: params.check }).then(exists => {
             if (exists == false) {
@@ -390,6 +392,6 @@ function Database(name, version) {
 export { Database };
 
 // let db = Database('notes');
-// db.save({ collection: 'personal', query: { name: 'kesdsanssd', age: 23 }, check: { name: 'kesdsanssd' } }).then(res => {
+// db.save({ collection: 'personal', query: {age: 27 }, check: { name: 'kendo' } }).then(res => {
 //     console.log(res)
 // });
