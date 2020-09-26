@@ -341,7 +341,7 @@ function Database(name, version) {
         let foundCount = 0, removedCount = 0;//set the counters
         return new Promise((resolve, reject) => {
             self.find(params).then(found => {
-                db.open().then(db => {
+                self.open().then(db => {
                     let transaction = db.transaction(params.collection, 'readwrite');
                     let store = transaction.objectStore(params.collection);
 
