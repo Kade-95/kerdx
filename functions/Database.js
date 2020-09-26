@@ -91,7 +91,7 @@ function Database(name, version) {
         let removedCount = 0, foundCount = 0;//set the counters
         return new Promise((resolve, reject) => {
             self.find({ collection, query: {}, many: true }).then(found => {//find all documents
-                db.open().then(db => {
+                self.open().then(db => {
                     if (db.objectStoreNames.contains(collection)) {//handle collection non-existence error
                         let transaction = db.transaction(collection, 'readwrite');
                         let store = transaction.objectStore(collection);
