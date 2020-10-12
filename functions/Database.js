@@ -1,8 +1,8 @@
 import { ObjectLibrary } from './Objects.js';
+let objectLibrary = ObjectLibrary();
 
 function Database(name, version) {
     let self = { name, version, initialized: false };
-    self.objectLibrary = ObjectLibrary();
     self.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
     self.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
     self.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
@@ -162,7 +162,7 @@ function Database(name, version) {
                             if (params.query == undefined) {//find any
                                 documents.push(cursor.value);
                             }
-                            else if (self.objectLibrary.checkMatch(cursor.value, params.query)) {//find specific
+                            else if (objectLibrary.isSubObject(cursor.value, params.query)) {//find specific
                                 documents.push(cursor.value);
                             }
                             cursor.continue();
@@ -293,7 +293,7 @@ function Database(name, version) {
                     let cursor = event.target.result;
                     let found = false;
                     if (cursor) {
-                        if (self.objectLibrary.checkMatch(cursor.value, params.check)) {//retrieve the matched documents
+                        if (objectLibrary.isSubObject(cursor.value, params.check)) {//retrieve the matched documents
                             found = true;
                             for (let i in params.query) {
                                 cursor.value[i] = params.query[i];
