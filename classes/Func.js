@@ -508,23 +508,43 @@ export class Func {
     }
 
     isArray(variable) {
-        return variable.constructor === Array;
+        let flag = false;
+        if (typeof variable == 'object') {
+            flag = variable.constructor === Array;
+        }
+        return flag;
     }
 
     isObject(variable) {
-        return variable.constructor === Object;
+        let flag = false;
+        if (typeof variable == 'object') {
+            flag = variable.constructor === Object;
+        }
+        return flag;
     }
 
     isString(variable) {
-        return variable.constructor === String;
+        let flag = false;
+        if (typeof variable == 'string') {
+            flag = variable.constructor === String;
+        }
+        return flag;
     }
 
     isNumber(variable) {
-        return variable.constructor === Number;
+        let flag = false;
+        if (typeof variable == 'number') {
+            flag = variable.constructor === Number;
+        }
+        return flag;
     }
 
     isBool(variable) {
-        return typeof variable === 'boolean';
+        let flag = false;
+        if (typeof variable == 'boolean') {
+            flag = variable.constructor === Boolean;
+        }
+        return flag;
     }
 
     isfunction(variable) {

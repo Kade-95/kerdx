@@ -13,6 +13,8 @@ import { ObjectLibrary } from './functions/Objects.js';
 import { MathsLibrary } from './functions/Math.js';
 import { AnalysisLibrary } from './functions/Analytics.js';
 import { Database } from './functions/Database.js';
+import { Compression } from './functions/Compression.js';
+import { Tree } from './classes/Tree.js';
 
 class Kerdx extends Components {
     constructor() {
@@ -60,5 +62,7 @@ export {
     ObjectLibrary,
     MathsLibrary,
     AnalysisLibrary,
-    Database
+    Database,
+    Compression,
+    Tree
 };
