@@ -17,13 +17,12 @@ import {
     Tree
 } from 'https://kade-95.github.io/Base/index.js';
 
-import { API } from './classes/API.js';
+import { AppLibrary } from './functions/AppLibrary.js';
 import { Database } from './functions/Database.js';
 
 class Kerdx extends Base {
     constructor() {
         super();
-        this.currentPage = location.href;
         this.styles = [
             'https://kade-95.github.io/kerdx/css/table.css',
             'https://kade-95.github.io/kerdx/css/cell.css',
@@ -49,7 +48,7 @@ export {
     Template,
     NeuralNetwork,
     Icons,
-    API,
+    AppLibrary,
     Shadow,
     ArrayLibrary,
     ObjectLibrary,

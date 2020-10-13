@@ -1,32 +1,20 @@
 import { Func } from 'https://kade-95.github.io/Base/index.js';
+let func = new Func();
 
-export class API extends Func {
-    constructor() {
-        super();
-        this.states = {};
-    }
+function AppLibrary() {
+    let self = {};
 
-    saveState() {
-        let url = window.location.href;
-        this.states[url] = document.body.outerHTML;
-    }
-
-    getState() {
-        let url = window.location.href;
-        return this.states[url];
-    }
-
-    makeWebapp(callback = () => { }) {
+    self.makeWebapp = (callback = () => { }) => {
         document.addEventListener('click', event => {
             let anchor = event.target;
             let parentAnchor = event.target.getParents('a');
             let url = anchor.getAttribute('href');//check when a url is about to be open
 
-            if (anchor.nodeName.toLowerCase() != 'a' && !this.isnull(parentAnchor)) {
+            if (anchor.nodeName.toLowerCase() != 'a' && !func.isnull(parentAnchor)) {
                 anchor = parentAnchor;
             }
 
-            if (this.isnull(url) && !this.isnull(parentAnchor)) {
+            if (func.isnull(url) && !func.isnull(parentAnchor)) {
                 anchor = parentAnchor;
             }
             //get the anchor element
@@ -34,12 +22,11 @@ export class API extends Func {
             let target = anchor.getAttribute('target');
 
             if (target == '_blank') {//check if it is for new page
-                window.open(this.prepareUrl(url));
+                window.open(func.prepareUrl(url));
             }
-            else if (!this.isnull(url)) {
+            else if (!func.isnull(url)) {
                 event.preventDefault();//block and open inside as webapp
-                if (this.prepareUrl(url) != location.href) window.history.pushState('page', 'title', url);
-                this.currentPage = url;
+                if (func.prepareUrl(url) != location.href) window.history.pushState('page', 'title', url);
                 callback();
             }
         });
@@ -47,10 +34,10 @@ export class API extends Func {
         window.onpopstate = callback;
     }
 
-    prepareUrl(url = '') {
+    self.prepareUrl = (url = '') => {
         if (!url.includes(location.origin)) {
-            let splitUrl = this.urlSplitter(url);
-            if(splitUrl.location == location.origin){
+            let splitUrl = func.urlSplitter(url);
+            if (splitUrl.location == location.origin) {
                 url = location.origin + '/' + url;
             }
         }
@@ -61,7 +48,7 @@ export class API extends Func {
         return url;
     }
 
-    ajax(params = { async: true, data: {}, url: '', method: '', secured: false }) {
+    self.ajax = (params = { async: true, data: {}, url: '', method: '', secured: false }) => {
         params.async = params.async || true;
         params.data = params.data || {};
         params.url = params.url || './';
@@ -110,3 +97,5 @@ export class API extends Func {
         });
     }
 }
+
+export { AppLibrary };
