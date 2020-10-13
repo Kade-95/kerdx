@@ -78,7 +78,7 @@ function AppLibrary() {
                 }
             };
 
-            if (this.isset(params.onprogress)) {
+            if (func.isset(params.onprogress)) {
                 request.upload.onprogress = (event) => {
                     params.onprogress((event.loaded / event.total) * 50);
                 }
