@@ -1,1 +1,2 @@
-import { Database, Kerdx } from './index.js';
+import { Database, Kerdx, AppLibrary } from './index.js';
+window.appLibrary = AppLibrary();

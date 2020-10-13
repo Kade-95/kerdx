@@ -96,6 +96,8 @@ function AppLibrary() {
             request.send(data);
         });
     }
+
+    return self;
 }
 
 export { AppLibrary };
