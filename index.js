@@ -1,35 +1,28 @@
-import { Func } from './classes/Func.js';
-import { Matrix } from './classes/Matrix.js';
-import { NeuralNetwork } from './classes/NeuralNetwork.js';
-import { Template } from './classes/Template.js';
-import { API } from './classes/API.js';
-import { Components } from './classes/Components.js';
-import { ColorPicker } from './classes/ColorPicker.js';
-import { Period } from './classes/Period.js';
-import { Icons } from './Icons.js';
-import { Shadow } from './functions/Shadow.js';
-import { ArrayLibrary } from './functions/Array.js';
-import { ObjectLibrary } from './functions/Objects.js';
-import { MathsLibrary } from './functions/Math.js';
-import { AnalysisLibrary } from './functions/Analytics.js';
-import { Database } from './functions/Database.js';
-import { Compression } from './functions/Compression.js';
-import { Tree } from './classes/Tree.js';
+import {
+    Base,
+    ColorPicker,
+    Period,
+    Matrix,
+    Func,
+    Components,
+    Template,
+    NeuralNetwork,
+    Icons,
+    Shadow,
+    ArrayLibrary,
+    ObjectLibrary,
+    MathsLibrary,
+    AnalysisLibrary,
+    Compression,
+    Tree
+} from 'https://kade-95.github.io/Base/index.js';
 
-class Kerdx extends Components {
+import { API } from './classes/API.js';
+import { Database } from './functions/Database.js';
+
+class Kerdx extends Base {
     constructor() {
         super();
-        this.Matrix = Matrix;
-        this.NeuralNetwork = NeuralNetwork;
-        this.Shadow = Shadow;
-        this.colorHandler = new ColorPicker();
-        this.api = new API();
-        this.array = ArrayLibrary();
-        this.object = ObjectLibrary();
-        this.math = MathsLibrary();
-        this.analytics = AnalysisLibrary();
-        this.database = Database;
-        this.icons = Icons;
         this.currentPage = location.href;
         this.styles = [
             'https://kade-95.github.io/kerdx/css/table.css',

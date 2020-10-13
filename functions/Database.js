@@ -1,4 +1,4 @@
-import { ObjectLibrary } from './Objects.js';
+import { ObjectLibrary } from 'https://kade-95.github.io/Base/index.js';
 let objectLibrary = ObjectLibrary();
 
 function Database(name, version) {
@@ -390,8 +390,3 @@ function Database(name, version) {
 }
 
 export { Database };
-
-// let db = Database('notes');
-// db.save({ collection: 'personal', query: {age: 27 }, check: { name: 'kendo' } }).then(res => {
-//     console.log(res)
-// });

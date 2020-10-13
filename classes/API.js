@@ -1,4 +1,4 @@
-import { Func } from './Func.js';
+import { Func } from 'https://kade-95.github.io/Base/index.js';
 
 export class API extends Func {
     constructor() {
