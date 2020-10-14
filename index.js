@@ -15,7 +15,7 @@ import {
     AnalysisLibrary,
     Compression,
     Tree
-} from 'kerdbase';
+} from '@thekade/base';
 
 import { AppLibrary } from './functions/AppLibrary.js';
 import { Database } from './functions/Database.js';
