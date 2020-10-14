@@ -1,5 +1,5 @@
-import { Template } from './Template';
-import { Func } from './Func';
+import { Template } from './Template.js';
+import { Func } from './Func.js';
 
 function ColorPicker() {
 

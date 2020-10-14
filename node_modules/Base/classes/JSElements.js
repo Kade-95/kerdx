@@ -1,4 +1,4 @@
-import { Period } from './Period';
+import { Period } from './Period.js';
 
 class JSElements extends Period {
     constructor() {

@@ -1,4 +1,4 @@
-import { Func } from './Func';
+import { Func } from './Func.js';
 
 class Period extends Func {
 

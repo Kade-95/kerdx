@@ -1,6 +1,6 @@
-import { Matrix } from './Matrix';
-import { Func } from './Func';
-import { ArrayLibrary } from './../functions/Array';
+import { Matrix } from './Matrix.js';
+import { Func } from './Func.js';
+import { ArrayLibrary } from './../functions/Array.js';
 
 let func = new Func();
 let arrayLibrary = ArrayLibrary();

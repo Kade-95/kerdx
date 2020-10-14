@@ -1,4 +1,4 @@
-import { Func } from '../classes/Func';
+import { Func } from '../classes/Func.js';
 let func = new Func();
 
 function Shadow(element) {

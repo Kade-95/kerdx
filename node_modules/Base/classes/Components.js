@@ -1,4 +1,4 @@
-import { Template } from './Template';
+import { Template } from './Template.js';
 
 class Components extends Template {
     constructor() {

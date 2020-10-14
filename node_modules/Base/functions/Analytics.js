@@ -1,7 +1,7 @@
-import { MathsLibrary } from './Math';
+import { MathsLibrary } from './Math.js';
 let mathLibrary = MathsLibrary();
 
-import { ObjectLibrary } from './Objects';
+import { ObjectLibrary } from './Objects.js';
 let objectLibrary = ObjectLibrary();
 
 function AnalysisLibrary() {
