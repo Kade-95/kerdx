@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Kade-95/kerdx#readme",
   "dependencies": {
-    "@thekade/base": "^1.0.1"
+    "@thekade/base": "^1.0.2"
   },
   "type": "module",
   "devDependencies": {},
