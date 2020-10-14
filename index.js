@@ -17,8 +17,8 @@ import {
     Tree
 } from 'Base';
 
-import { AppLibrary } from './functions/AppLibrary.js';
-import { Database } from './functions/Database.js';
+import { AppLibrary } from './functions/AppLibrary';
+import { Database } from './functions/Database';
 
 class Kerdx extends Base {
     constructor() {

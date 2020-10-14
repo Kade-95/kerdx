@@ -1,4 +1,4 @@
-import { ObjectLibrary } from 'https://kade-95.github.io/Base/index.js';
+import { ObjectLibrary } from 'Base';
 let objectLibrary = ObjectLibrary();
 
 function Database(name, version) {
