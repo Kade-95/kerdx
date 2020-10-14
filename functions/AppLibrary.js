@@ -1,4 +1,4 @@
-import { Func } from 'https://kade-95.github.io/Base/index.js';
+import { Func } from 'Base';
 let func = new Func();
 
 function AppLibrary() {

@@ -26,6 +26,19 @@ class Base extends Components {
         this.math = MathsLibrary();
         this.analytics = AnalysisLibrary();
         this.icons = Icons;
+
+        this.styles = [
+            'https://kade-95.github.io/kerdx/css/table.css',
+            'https://kade-95.github.io/kerdx/css/cell.css',
+            'https://kade-95.github.io/kerdx/css/form.css',
+            'https://kade-95.github.io/kerdx/css/picker.css',
+            'https://kade-95.github.io/kerdx/css/select.css',
+            'https://kade-95.github.io/kerdx/css/json.css',
+            'https://kade-95.github.io/kerdx/css/popup.css'
+        ];
+        for (let style of this.styles) {
+            this.loadCss(style);
+        }
     }
 }
 
