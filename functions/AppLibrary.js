@@ -1,4 +1,4 @@
-import { Func } from 'Base';
+import { Func } from 'kerdbase';
 let func = new Func();
 
 function AppLibrary() {

@@ -1,5 +1,5 @@
 {
-  "name": "Kerdx",
+  "name": "kerdx",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Kade-95/kerdx#readme",
   "dependencies": {
-    "Base": "git+https://github.com/Kade-95/Base.git"
+    "kerdbase": "git+https://github.com/Kade-95/Base.git"
   },
   "type": "module"
 }

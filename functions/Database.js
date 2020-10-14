@@ -1,4 +1,4 @@
-import { ObjectLibrary } from 'Base';
+import { ObjectLibrary } from 'kerdbase';
 let objectLibrary = ObjectLibrary();
 
 function Database(name, version) {
