@@ -1,0 +1,50 @@
+.kerdx-pop-up {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: var(--light-secondary-color);
+    display: grid;
+    width: var(--fill-parent);
+    height: var(--fill-parent);
+    justify-items: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.kerdx-pop-up-window {
+    background-color: var(--primary-color);
+    display: grid;
+    grid-gap: 1em;
+    justify-items: center;
+    align-items: start;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr;
+    overflow: hidden;
+}
+
+.kerdx-pop-up-menu {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: grid;
+    grid-gap: .5em;
+    grid-template-columns: 1fr repeat(2, min-content);
+    width: 100%;
+    justify-items: flex-end;
+    align-items: center
+}
+
+.kerdx-pop-up-control {
+    color: var(--primary-color);
+    height: 20px;
+    width: 20px;
+    padding: 1em
+}
+
+.kerdx-pop-up-content {
+    display: block;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}

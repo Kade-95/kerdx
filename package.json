@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Kade-95/kerdx/issues"
   },
-  "homepage": "https://github.com/Kade-95/kerdx#readme"
+  "homepage": "https://github.com/Kade-95/kerdx#readme",
+  "dependencies": {
+    "Base": "git+https://github.com/Kade-95/Base.git"
+  }
 }

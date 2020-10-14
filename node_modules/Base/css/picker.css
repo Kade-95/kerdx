@@ -1,0 +1,20 @@
+.kerdx-picker {
+    display: grid;
+    height: var(--fill-parent);
+    width: var(--fill-parent);
+    grid-template-rows: max-content 1fr;
+}
+
+.kerdx-picker-contents {
+    display: block;
+    height: var(--fill-parent);
+    width: var(--fill-parent);
+}
+
+.kerdx-picker-single {
+    padding: 2em;
+    display: inline-block;
+    margin: 1em;
+    border: 1px solid var(--secondary-color);
+    margin: 1em;
+}

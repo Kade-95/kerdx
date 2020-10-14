@@ -1,0 +1,47 @@
+
+.cell {
+    display: inline-grid;
+    margin: .5em;
+    font-size: 1em;
+    letter-spacing: .1em;
+    font-weight: 300;
+    border: 1px solid gray;
+    border-radius: 10px;
+    overflow: auto;
+    text-align: center;
+    min-width: 100px;
+    overflow-y: hidden;
+}
+
+.cell:hover, .cell:focus {
+    border-radius: unset;
+    box-shadow: var(--primary-shadow);
+    transition-duration: .2s;
+}
+
+.cell-label {
+    text-transform: uppercase;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 0.3em;
+    text-align: center;
+    font-weight: 400;
+}
+
+.cell-data{
+    padding: 0.3em;
+    outline: none;
+    border: none;
+    color: var(--secondary-color);
+    min-height: 30px;
+    text-align: center;
+    justify-self: center;
+    max-width: 300px;
+    max-height: 100px;
+    overflow: auto;
+}
+
+.cell-data:hover, .cell-data:focus {
+    cursor: text;
+    transition-duration: 1s;
+}

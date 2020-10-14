@@ -1,0 +1,118 @@
+.kerdx-form {
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+    display: grid;
+    grid-row-gap: 1em;
+    grid-template-rows: repeat(4, min-content);
+    width: var(--match-parent);
+    max-width: 700px;
+    margin: 2em;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border: 1px solid var(--secondary-color);
+}
+
+.kerdx-form-title {
+    font-weight: 300;
+    letter-spacing: .05em;
+    font-size: 1.2em;
+    text-align: center;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1em;
+}
+
+.kerdx-form-contents{
+    display: grid;
+    grid-gap: 1em;
+    padding: 1em;
+    align-items: start;
+}
+
+.kerdx-form-buttons{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-content: center;
+    padding: 1em;
+}
+
+.kerdx-form-buttons button{
+    width: var(--fill-parent);
+    border-radius: 20px;
+    padding: 1em;
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.kerdx-form-single-content{
+    display: grid;
+    padding: .5em;
+}
+
+.kerdx-form-label {
+    color: #666666;
+    text-transform: capitalize;
+    text-align: justify;
+    display: flex;
+    justify-content: space-between;
+}
+
+.kerdx-form-note{
+    color: #999999;
+    font-size: .7em;
+}
+
+.kerdx-form-data{
+    border: 1px solid var(--secondary-color);
+    padding: .7em .3em;
+    text-align: justify;
+    min-width: unset;
+    border-radius: 20px;
+    outline: none;
+}
+
+.kerdx-form-data:focus {
+    border-color: var(--secondary-color);
+}
+
+.kerdx-form-row{
+    position: relative;
+    display: grid;
+    border: 1px solid var(--secondary-color);
+    grid-gap: .5em;
+}
+
+.kerdx-form-row-contents{
+    display: grid;
+    grid-gap: .5em;
+}
+
+.kerdx-form .cell-label{
+    font-size: .9em;
+}
+
+.kerdx-form .cell-data{
+    outline: none;
+    border: none;
+    min-height: 20px;
+}
+
+.kerdx-form-error{
+    display: none;
+    background-color: var(--accient-color);
+    color: var(--secondary-color);
+    font-size: .8em;
+    padding: .5em;
+}
+
+@media(min-width: 700px) {
+    .kerdx-form #remember-me {
+        width: 20px;
+        height: 20px;
+    }
+}

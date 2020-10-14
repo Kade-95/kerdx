@@ -1,0 +1,63 @@
+.kerdx-data-window {
+    color: inherit;
+    display: grid;
+    grid-template-columns: max-content max-content 1fr;
+    gap: 1em;
+}
+
+.kerdx-data-line {
+    color: inherit;
+    display: grid;
+}
+
+.kerdx-data-toggles {
+    color: inherit;
+    display: grid;
+    position: relative;
+}
+
+.kerdx-data-line-number {
+    color: inherit;
+    /* display: flex; */
+}
+
+.kerdx-data-toggles .kerdx-data-toggles-button {
+    color: inherit;
+    display: flex;
+    align-items: center;
+    font-size: .8em;
+    cursor: pointer;
+    position: absolute;
+}
+
+.kerdx-data-code {
+    color: inherit;
+    position: relative;
+}
+
+.kerdx-data-pun {
+    color: inherit;
+}
+
+.kerdx-data-lit {
+    color: inherit;
+}
+
+.kerdx-data-block {
+    color: inherit;
+}
+
+.kerdx-data-str {
+    color: inherit;
+}
+
+.kerdx-data-pln {
+    display: block;
+    width: 100%;
+}
+
+.kerdx-data-item {
+    margin-left: 20px;
+    display: block;
+    color: inherit;
+}
