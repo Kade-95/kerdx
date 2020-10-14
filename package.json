@@ -19,5 +19,6 @@
   "homepage": "https://github.com/Kade-95/kerdx#readme",
   "dependencies": {
     "Base": "git+https://github.com/Kade-95/Base.git"
-  }
+  },
+  "type": "module"
 }
