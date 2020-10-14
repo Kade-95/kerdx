@@ -1,4 +1,4 @@
-export class Func {
+class Func {
 
     constructor() {
         this.capitals = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -629,3 +629,5 @@ export class Func {
         return vars;
     }
 }
+
+export { Func };

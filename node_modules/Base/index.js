@@ -1,18 +1,18 @@
-import { Func } from './classes/Func.js';
-import { Matrix } from './classes/Matrix.js';
-import { NeuralNetwork } from './classes/NeuralNetwork.js';
-import { Template } from './classes/Template.js';
-import { Components } from './classes/Components.js';
-import { ColorPicker } from './classes/ColorPicker.js';
-import { Period } from './classes/Period.js';
-import { Icons } from './Icons.js';
-import { Shadow } from './functions/Shadow.js';
-import { ArrayLibrary } from './functions/Array.js';
-import { ObjectLibrary } from './functions/Objects.js';
-import { MathsLibrary } from './functions/Math.js';
-import { AnalysisLibrary } from './functions/Analytics.js';
-import { Compression } from './functions/Compression.js';
-import { Tree } from './classes/Tree.js';
+import { Func } from './classes/Func';
+import { Matrix } from './classes/Matrix';
+import { NeuralNetwork } from './classes/NeuralNetwork';
+import { Template } from './classes/Template';
+import { Components } from './classes/Components';
+import { ColorPicker } from './classes/ColorPicker';
+import { Period } from './classes/Period';
+import { Icons } from './Icons';
+import { Shadow } from './functions/Shadow';
+import { ArrayLibrary } from './functions/Array';
+import { ObjectLibrary } from './functions/Objects';
+import { MathsLibrary } from './functions/Math';
+import { AnalysisLibrary } from './functions/Analytics';
+import { Compression } from './functions/Compression';
+import { Tree } from './classes/Tree';
 
 class Base extends Components {
     constructor() {

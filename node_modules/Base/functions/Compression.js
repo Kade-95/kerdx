@@ -1,13 +1,13 @@
-import { ArrayLibrary } from './Array.js';
+import { ArrayLibrary } from './Array';
 let arrayLibrary = ArrayLibrary();
 
-import { MathsLibrary } from './Math.js';
+import { MathsLibrary } from './Math';
 let mathLibrary = MathsLibrary();
 
-import { ObjectLibrary } from './Objects.js';
+import { ObjectLibrary } from './Objects';
 let objectLibrary = ObjectLibrary();
 
-import { Tree } from '../classes/Tree.js';
+import { Tree } from '../classes/Tree';
 
 function Compression() {
     const self = {};

@@ -1,4 +1,4 @@
-import { ArrayLibrary } from './Array.js';
+import { ArrayLibrary } from './Array';
 let arrayLibrary = ArrayLibrary();
 
 function ObjectLibrary() {
