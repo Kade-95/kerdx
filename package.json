@@ -1,7 +1,6 @@
 {
-  "name": "kerdx",
+  "name": "@thekade/kerdx",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,8 +11,8 @@
     "url": "git+https://github.com/Kade-95/kerdx.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "thekade",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Kade-95/kerdx/issues"
   },
@@ -21,5 +20,7 @@
   "dependencies": {
     "kerdbase": "git+https://github.com/Kade-95/Base.git"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {},
+  "description": ""
 }
