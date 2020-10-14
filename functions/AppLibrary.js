@@ -1,4 +1,4 @@
-import { Func } from 'kerdbase';
+import { Func } from '@thekade/base';
 let func = new Func();
 
 function AppLibrary() {
